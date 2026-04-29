@@ -1,0 +1,159 @@
+/* ============================================================
+   终端基础样式
+   ============================================================ */
+.achievements-terminal {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  font-family: 'Consolas', 'Courier New', monospace;
+  min-height: 100vh;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.terminal-header { border-bottom: 2px solid #3d3d3d; padding-bottom: 20px; margin-bottom: 30px; }
+.system-header { display: flex; justify-content: space-between; align-items: flex-start; }
+.system-tag { font-size: 12px; color: #888; letter-spacing: 2px; margin-bottom: 10px; }
+.terminal-title { color: #fff; font-size: 24px; margin: 0; letter-spacing: 1px; }
+
+.nav-btn {
+  background: transparent; border: 1px solid #00ffd5; color: #00ffd5;
+  padding: 8px 20px; font-weight: bold; cursor: pointer; transition: 0.3s;
+}
+.nav-btn:hover { background: rgba(0, 255, 213, 0.1); box-shadow: 0 0 15px rgba(0, 255, 213, 0.4); }
+
+.terminal-body {
+  background: #252525; border: 1px solid #3d3d3d;
+  flex: 1; display: flex; flex-direction: column;
+  height: 650px; overflow: hidden;
+}
+
+.panel-header {
+  padding: 15px 25px; background: #2a2a2a; border-bottom: 1px solid #3d3d3d;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.header-label { color: #00ffd5; font-weight: bold; letter-spacing: 1px; }
+.progress-bar-container { display: flex; align-items: center; gap: 15px; }
+.progress-text { color: #888; font-size: 14px; }
+.progress-track { width: 150px; height: 6px; background: #111; border: 1px solid #444; }
+.progress-fill { height: 100%; background: #00ffd5; box-shadow: 0 0 8px #00ffd5; transition: width 0.5s; }
+
+.medals-scroll-area {
+  flex: 1 1 0; min-height: 0; overflow-y: auto; padding: 50px 30px;
+}
+.medals-scroll-area::-webkit-scrollbar { width: 6px; }
+.medals-scroll-area::-webkit-scrollbar-thumb { background: #4d4d4d; border-radius: 3px; }
+
+/* ============================================================
+   奖章悬浮系统
+   ============================================================ */
+.medals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 50px;
+}
+
+@keyframes floatAnimation {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.medal-card {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  perspective: 1000px;
+  cursor: pointer;
+  position: relative; /* 🌟 修复 2：加了这行，底部的名字文字才不会乱飞！ */
+}
+.medal-card:not(.locked) {
+  animation: floatAnimation 4s ease-in-out infinite;
+}
+
+.medal-flipper {
+  width: 100%;
+  height: 100%;
+}
+.flipper {
+  width: 100%; height: 100%; position: relative;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-style: preserve-3d;
+}
+.medal-card:not(.locked):hover .flipper { transform: rotateY(180deg); }
+
+.card-face {
+  position: absolute; width: 100%; height: 100%;
+  backface-visibility: hidden;
+  background: transparent;
+  border: none;
+  display: flex; justify-content: center; align-items: center;
+}
+.card-back { transform: rotateY(180deg); }
+
+/* --- 【关键修改点：调整图片高度，为文字让位】 --- */
+.medal-img {
+  width: 100%;
+  height: 85%; /* 从 100% 缩小至 85%，腾出底部空间 */
+  object-fit: contain;
+  filter: drop-shadow(0 15px 15px rgba(0,0,0,0.6));
+  transition: filter 0.3s ease;
+  transform: translateY(-12px); /* 将图片稍微往上抬一点 */
+}
+
+.medal-card:not(.locked):hover .front .medal-img {
+  filter: drop-shadow(0 0 25px rgba(0, 255, 213, 0.5));
+}
+
+/* --- 【新增：底部奖章名字标签】 --- */
+.medal-name-label {
+  position: absolute;
+  bottom: 0px;  /* 紧贴卡片底部 */
+  width: 100%;
+  text-align: center;
+  color: #00ffd5;
+  font-weight: bold;
+  font-size: 15px;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(0, 255, 213, 0.6);
+  pointer-events: none; /* 防止鼠标误选文字 */
+}
+
+/* ============================================================
+   未解锁状态 (加密)
+   ============================================================ */
+.medal-card.locked { cursor: not-allowed; }
+.medal-card.locked .front .medal-img {
+  filter: grayscale(100%) brightness(0.25) drop-shadow(0 5px 5px rgba(0,0,0,0.8));
+}
+
+/* 【新增：加密状态下名字置灰】 */
+.medal-card.locked .medal-name-label {
+  color: #666;
+  text-shadow: none;
+  letter-spacing: 3px; /* 稍微加宽字间距，更有神秘感 */
+}
+
+.lock-overlay {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+}
+.lock-icon { font-size: 32px; opacity: 0.8; text-shadow: 0 0 10px #ff4444; margin-bottom: 10px;}
+.lock-text { color: #ff4444; font-weight: bold; letter-spacing: 2px; font-size: 14px; text-shadow: 0 0 10px #ff4444; }
+
+/* ============================================================
+   背面数据展示层
+   ============================================================ */
+.back-data-overlay {
+  position: absolute;
+  inset: 5%;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  text-align: center;
+  padding: 20px;
+  border: 1px solid rgba(0, 255, 213, 0.2);
+  box-shadow: inset 0 0 20px rgba(0, 255, 213, 0.15);
+}
+.back-title { color: #00ffd5; border-bottom: 1px solid #00ffd5; padding-bottom: 5px; margin-bottom: 8px; font-weight: bold; font-size: 14px; }
+.back-desc { font-size: 12px; color: #ccc; line-height: 1.4; }
+.back-comment { font-size: 10px; color: #888; font-style: italic; margin-top: 8px; }

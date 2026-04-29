@@ -1,0 +1,44 @@
+.clue-search-container { height: 100vh; background-color: #120e0c; color: #cbb497; font-family: 'Georgia', 'Times New Roman', serif; display: flex; flex-direction: column; overflow: hidden; position: relative; }
+.grain-overlay { position: absolute; inset: 0; pointer-events: none; opacity: 0.1; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); z-index: 1; }
+
+.main-layout { max-width: 1400px; width: 100%; margin: 0 auto; padding: 15px 25px 25px; gap: 25px; display: grid; grid-template-columns: 1fr 380px; grid-template-rows: auto minmax(0, 1fr); flex: 1; min-height: 0; z-index: 10; box-sizing: border-box; }
+
+.map-header { grid-column: 1; align-self: flex-end; }
+.map-header h2 { margin: 0; font-size: 1.8rem; font-weight: normal; }
+.subtitle { color: #7f8c8d; font-style: italic; margin-top: 5px; }
+
+.action-buttons { grid-column: 2; display: flex; justify-content: flex-end; align-items: center; gap: 15px; }
+.ap-display { color: #8a6c56; font-family: 'Courier New', monospace; font-weight: bold; margin-right: 10px; }
+.ap-count { color: #a93226; font-size: 1.6rem; text-shadow: 0 0 8px rgba(169,50,38,0.4); vertical-align: middle; }
+.btn-memory, .btn-end { padding: 8px 16px; font-family: inherit; cursor: pointer; transition: 0.3s; letter-spacing: 1px; }
+.btn-memory { background: #1a1614; color: #cbb497; border: 1px solid #3c2a21; }
+.btn-memory:hover { border-color: #a93226; background: #2c2522; }
+.btn-end { background: transparent; color: #a93226; border: 1px solid #a93226; font-weight: bold; }
+.btn-end:hover { background: #a93226; color: #1a1614; }
+
+/* 3D 容器外壳 */
+.map-container {
+  grid-column: 1; grid-row: 2; height: 100%; min-height: 0; position: relative;
+  /* 移除了之前的背景图片和复杂阴影，因为 ModelViewer 自己带了样式 */
+  overflow: hidden; border-radius: 4px;
+}
+
+.notebook-wrapper { grid-column: 2; grid-row: 2; width: 100%; height: 100%; min-height: 0; position: relative; }
+
+/* 遮罩及弹窗样式保留 */
+.searching-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.8); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 20; }
+.typewriter { font-family: 'Courier New', monospace; font-size: 1.2rem; margin-top: 20px; color: #a93226; letter-spacing: 2px;}
+.loader-spinner { width: 50px; height: 50px; border: 3px solid transparent; border-top-color: #a93226; border-radius: 50%; animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.clue-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 100; display: flex; justify-content: center; align-items: center; }
+.paper-modal { background: #1e1b18; width: 500px; padding: 40px; border: 1px solid #3c2a21; box-shadow: 0 10px 30px rgba(0,0,0,0.9); position: relative; }
+.stamp-decrypted { position: absolute; top: 20px; right: 20px; font-family: 'Courier New', monospace; color: #7f8c8d; border: 1px solid #7f8c8d; padding: 2px 5px; transform: rotate(10deg); opacity: 0.5; }
+.modal-header { border-bottom: 1px solid #3c2a21; margin-bottom: 20px; padding-bottom: 10px;}
+.modal-header h2 { margin: 0; font-weight: normal; color: #cbb497; font-size: 1.8rem; }
+.detail-source { color: #a93226; font-style: italic; font-size: 0.9rem; margin-bottom: 15px;}
+.detail-desc { line-height: 1.8; color: #a5937d; text-align: justify;}
+.modal-footer { margin-top: 30px; text-align: right;}
+.btn-primary { background: #a93226; color: #dad1b9; border: none; padding: 8px 20px; cursor: pointer; font-family: inherit;}
+.btn-primary:hover { background: #8e2a20; }
+

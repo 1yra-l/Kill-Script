@@ -1,0 +1,136 @@
+/* ==================== 基础与布局 ==================== */
+.user-center {
+  background-color: #080808;
+  color: #00ffd5;
+  font-family: 'Consolas', monospace;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.terminal-header {
+  border-bottom: 1px solid #1a1a1a;
+  padding-bottom: 15px;
+}
+
+.system-header { display: flex; justify-content: space-between; align-items: center; }
+.system-tag { color: #555; font-size: 13px; letter-spacing: 2px; }
+
+.nav-btn {
+  background: transparent; color: #00ffd5; border: 1px solid #00ffd5;
+  padding: 8px 20px; font-family: 'Consolas', monospace; font-size: 14px;
+  font-weight: bold; cursor: pointer; transition: all 0.3s ease;
+  letter-spacing: 2px; text-transform: uppercase;
+}
+.nav-btn:hover {
+  background: rgba(0, 255, 213, 0.1); box-shadow: 0 0 15px rgba(0, 255, 213, 0.5);
+  text-shadow: 0 0 5px #00ffd5; transform: translateY(-2px);
+}
+.abort-btn { color: #ff4d4d; border-color: #ff4d4d; }
+.abort-btn:hover {
+  background: rgba(255, 77, 77, 0.1); box-shadow: 0 0 15px rgba(255, 77, 77, 0.5);
+  text-shadow: 0 0 5px #ff4d4d; border-color: #ff4d4d;
+}
+
+/* ==================== 主体内容 ==================== */
+.dashboard-container {
+  flex: 1; display: flex; flex-direction: column;
+  background: #0c0c0c; border: 1px solid #1a1a1a;
+  border-radius: 8px; overflow: hidden; margin-top: 20px;
+}
+
+.personal-header {
+  padding: 20px 30px; border-bottom: 1px solid #1a1a1a;
+  display: flex; align-items: center; gap: 20px; background: rgba(0, 255, 213, 0.03);
+}
+.personal-title { margin: 0; font-size: 24px; color: #00ffd5; text-shadow: 0 0 12px #00ffd5; letter-spacing: 2px; }
+.path { background: rgba(0, 255, 213, 0.1); padding: 4px 14px; border-radius: 30px; font-size: 13px; font-weight: bold; }
+.user-meta { margin-left: auto; display: flex; flex-direction: column; align-items: flex-end; font-size: 13px; color: #888; }
+.user-id { color: #00ccaa; }
+
+.vip-content { display: flex; flex: 1; overflow: hidden; }
+
+/* ==================== 左侧套餐区 ==================== */
+.vip-plans-section { flex: 1; padding: 30px; overflow-y: auto; }
+.section-subtitle { color: #555; font-size: 14px; letter-spacing: 2px; margin-bottom: 20px; border-bottom: 1px dashed #222; padding-bottom: 10px; }
+.mt-20 { margin-top: 40px; }
+
+.plans-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+.section-card {
+  background: rgba(18, 18, 18, 0.95);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px; padding: 25px 20px;
+  position: relative; transition: all 0.3s; cursor: pointer;
+  display: flex; flex-direction: column;
+}
+.section-card:hover { border-color: rgba(0, 255, 213, 0.4); transform: translateY(-5px); }
+.section-card.active {
+  border-color: #00ffd5; box-shadow: 0 0 25px rgba(0, 255, 213, 0.15);
+  background: rgba(0, 255, 213, 0.05); transform: translateY(-5px);
+}
+.section-card.pro-card { border-color: rgba(255, 204, 0, 0.3); }
+.section-card.pro-card.active {
+  border-color: #ffcc00; box-shadow: 0 0 25px rgba(255, 204, 0, 0.15);
+  background: rgba(255, 204, 0, 0.05);
+}
+
+.plan-badge {
+  position: absolute; top: 0; right: 0; background: #333; color: #fff;
+  font-size: 11px; padding: 4px 10px; border-bottom-left-radius: 8px; font-weight: bold;
+}
+.pro-badge { background: #ffcc00; color: #000; }
+
+.section-card h3 { margin: 0 0 5px 0; color: #fff; font-size: 18px; letter-spacing: 1px; }
+.eng-title { color: #888; font-size: 12px; margin-bottom: 20px; text-transform: uppercase; }
+.price { color: #00ffd5; font-size: 16px; margin-bottom: 25px; font-weight: bold; }
+.price .num { font-size: 32px; }
+.pro-card .price { color: #ffcc00; }
+
+.perks { list-style: none; padding: 0; margin: 0; font-size: 13px; color: #ccc; line-height: 2; flex: 1; }
+.perks li { border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 5px; margin-bottom: 5px; }
+
+/* 支付方式 */
+.payment-methods { display: flex; gap: 20px; }
+.pay-method {
+  flex: 1; border: 1px solid #222; background: #111; padding: 15px;
+  text-align: center; border-radius: 6px; cursor: pointer; transition: 0.3s;
+  color: #888; font-weight: bold;
+}
+.pay-method:hover { border-color: #555; color: #ccc; }
+.pay-method.active { border-color: #00ffd5; color: #00ffd5; background: rgba(0, 255, 213, 0.05); }
+.pay-method .icon { display: inline-block; width: 24px; height: 24px; background: #333; border-radius: 50%; line-height: 24px; color: #fff; margin-right: 8px; }
+.pay-method.active .icon { background: #00ffd5; color: #000; }
+
+/* ==================== 右侧终端与结算区 ==================== */
+.terminal-sidebar { width: 320px; border-left: 1px solid #1a1a1a; display: flex; flex-direction: column; background: #080808; }
+
+.console-panel { flex: 1; display: flex; flex-direction: column; padding: 20px; border-bottom: 1px solid #1a1a1a; overflow: hidden; }
+.panel-title { color: #555; font-size: 12px; letter-spacing: 2px; margin-top: 0; margin-bottom: 15px; }
+
+.terminal-logs {
+  flex: 1; background: #050505; border: 1px solid #111; padding: 10px;
+  overflow-y: auto; font-size: 12px; line-height: 1.6; border-radius: 4px;
+}
+.terminal-logs p { margin: 0 0 5px 0; word-break: break-all; }
+.time { color: #555; margin-right: 8px; }
+.info { color: #aaa; }
+.success { color: #00ffd5; }
+.warning { color: #ffaa00; }
+.error { color: #ff4d4d; }
+
+.blinking-cursor { animation: blink 1s infinite; color: #00ffd5; font-weight: bold; }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+.checkout-panel { padding: 30px 20px; background: #0c0c0c; }
+.total-row { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 25px; border-bottom: 1px dashed #333; padding-bottom: 10px; }
+.total-row span { color: #888; font-size: 14px; }
+.total-price { color: #00ffd5 !important; font-size: 28px !important; font-weight: bold; text-shadow: 0 0 10px rgba(0, 255, 213, 0.4); }
+
+.upgrade-btn { width: 100%; padding: 15px; font-size: 16px; }
+.upgrade-btn:disabled { border-color: #333; color: #555; background: #111; cursor: not-allowed; box-shadow: none; text-shadow: none; }
+
+.scrollbar-custom::-webkit-scrollbar { width: 4px; }
+.scrollbar-custom::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }

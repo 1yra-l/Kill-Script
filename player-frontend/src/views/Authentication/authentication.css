@@ -1,0 +1,172 @@
+/* 继承原基础布局风格 */
+.auth-terminal {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  font-family: 'Consolas', 'Courier New', monospace;
+  min-height: 100vh;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.terminal-header {
+  border-bottom: 2px solid #3d3d3d;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+.system-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.system-tag {
+  font-size: 12px;
+  color: #888;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.nav-btn {
+  background: transparent;
+  border: 1px solid #00ffd5;
+  color: #00ffd5;
+  padding: 8px 20px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 5px rgba(0, 255, 213, 0.2);
+}
+
+.nav-btn:hover {
+  background: rgba(0, 255, 213, 0.1);
+  box-shadow: 0 0 15px rgba(0, 255, 213, 0.4);
+  transform: translateY(-2px);
+}
+
+/* 认证专属样式 */
+.auth-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+.auth-card {
+  background: #252525;
+  border: 1px solid #3d3d3d;
+  width: 100%;
+  max-width: 500px;
+  padding: 40px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  position: relative;
+}
+
+/* 伪装的扫描线装饰 */
+.auth-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: #00ffd5;
+  box-shadow: 0 0 10px #00ffd5;
+  opacity: 0.5;
+}
+
+.card-header {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.auth-title {
+  color: #fff;
+  font-size: 22px;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.auth-subtitle {
+  color: #888;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.form-group {
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label {
+  color: #aaa;
+  font-size: 14px;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
+.cyber-input {
+  background: #1a1a1a;
+  border: 1px solid #4d4d4d;
+  color: #00ffd5;
+  padding: 12px 15px;
+  font-family: inherit;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s;
+}
+
+.cyber-input:focus {
+  border-color: #00ffd5;
+  box-shadow: inset 0 0 5px rgba(0, 255, 213, 0.2);
+}
+
+.input-hint {
+  font-size: 12px;
+  color: #666;
+  margin-top: 6px;
+}
+
+.action-area {
+  margin-top: 35px;
+  display: flex;
+  justify-content: center;
+}
+
+.verify-btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 18px;
+  letter-spacing: 2px;
+  background: rgba(0, 255, 213, 0.05);
+}
+
+.system-message {
+  margin-top: 25px;
+  padding: 15px;
+  border-left: 4px solid;
+  font-size: 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.system-message.error {
+  background: rgba(255, 68, 68, 0.1);
+  border-color: #ff4444;
+  color: #ff4444;
+  text-shadow: 0 0 5px rgba(255, 68, 68, 0.4);
+}
+
+.system-message.success {
+  background: rgba(0, 255, 213, 0.1);
+  border-color: #00ffd5;
+  color: #00ffd5;
+  text-shadow: 0 0 5px rgba(0, 255, 213, 0.4);
+}
+
+.msg-icon {
+  font-weight: bold;
+}

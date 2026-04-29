@@ -1,0 +1,76 @@
+{
+  "script_id": "2",
+  "script_name": "觉醒",
+  "flow_config": {
+    "phases": [
+      "自我介绍",
+      "第一轮搜证",
+      "第一轮公聊",
+      "第二轮搜证",
+      "第二轮公聊",
+      "投票指证",
+      "真相复盘"
+    ]
+  },
+  "common_knowledge": [
+    {
+      "content": "这里是未来世界，涉及仿生人技术。",
+      "type": "background"
+    },
+    {
+      "content": "仿生人可能在偶然情况下觉醒。",
+      "type": "public_rumor"
+    },
+    {
+      "content": "案发地点包括地下室、一楼、二楼、三楼、花园等区域。地下室有密室和通风管道。",
+      "type": "map_info"
+    }
+  ],
+  "clue_pool": [
+    {
+      "clue_id": "AN_01",
+      "content": "一把带有 R 标记的手枪，属于 REAL 组织。",
+      "location_tag": "三楼",
+      "owner": "安娜",
+      "unlock_condition": "default"
+    },
+    {
+      "clue_id": "LN_07",
+      "content": "林恩的制造图纸，证明林恩是尼克制造的仿生人。",
+      "location_tag": "杂物间",
+      "owner": "林恩",
+      "unlock_condition": "default"
+    },
+    {
+      "clue_id": "SC_03",
+      "content": "意识交换记录：显示 9:20 尼克与山姆进行了意识传输。",
+      "location_tag": "地下室",
+      "owner": "山姆",
+      "unlock_condition": "progress_based"
+    },
+    {
+      "clue_id": "WP_01",
+      "content": "一把无声手枪，弹匣内缺了两枚子弹，曾在冲突中开过一枪。",
+      "location_tag": "凶案现场",
+      "owner": "无",
+      "unlock_condition": "progress_based"
+    },
+    {
+      "clue_id": "KV_01",
+      "content": "凯文是登山爱好者，其指纹与密室内侧留下的指纹完全一致。",
+      "location_tag": "密室",
+      "owner": "凯文",
+      "unlock_condition": "default"
+    }
+  ],
+  "true_verdict": {
+    "killer": "林恩",
+    "motive": "林恩为了自保防止意识被交换后报废，并意图通过杀掉尼克继承 K 科技财产。",
+    "truth": "死者身体是仿生人尼克，意识是士兵型仿生人山姆。林恩捡起山姆的无声手枪击毙了昏迷中尚有鼻息的尼克。尼克中三枪，林恩所开的第二枪是致命伤。",
+    "key_evidence": [
+      "林恩制造图",
+      "意识交换记录",
+      "缺子弹的手枪"
+    ]
+  }
+}

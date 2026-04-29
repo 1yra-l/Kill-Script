@@ -1,0 +1,59 @@
+<div class="result-page">
+  <div class="ambient-overlay"></div>
+
+  <div class="result-main-container">
+    <section class="judgment-sector">
+      <div class="prison-cell-outer horizontal-cell">
+        <div class="cell-frame-inner">
+          <img v-if="accusedCandidate && accusedCandidate.image" 
+               :src="accusedCandidate.image" 
+               class="suspect-mugshot-fit horizontal-fit" />
+          <div v-else class="placeholder-avatar">👤</div>
+          <div class="prison-bars left-bar" :class="{ 'slammed': barsDropped }"></div>
+          <div class="prison-bars right-bar" :class="{ 'slammed': barsDropped }"></div>
+        </div>
+      </div>
+
+      <div v-if="accusedCandidate" class="accused-name-display">
+        指控目标：{{ accusedCandidate.name }}
+      </div>
+
+      <div class="judgment-banner" v-if="barsDropped">
+        <div class="verdict-glow-tag">{{ isVictory ? 'TERMINATED' : 'DATA ERROR' }}</div>
+        <h2 class="verdict-headline metal-etching">{{ isVictory ? '罪有应得' : '凶手逍遥法外' }}</h2>
+      </div>
+    </section>
+
+    <main class="truth-dossier">
+      <div class="sonar-scanner-effect dossier-desk">
+        <div class="glass-glare-overlay secret-watermark">DECLASSIFIED</div>
+        <header class="dossier-header">
+          <span class="file-tag file-b24">CASE FILE // B-24</span>
+        </header>
+
+        <article class="truth-narrative carbon-print">
+          <p v-for="(p, i) in truthData.paragraphs" :key="i" class="truth-p-row">
+            {{ p }}
+          </p>
+        </article>
+      </div>
+    </main>
+
+    <footer class="final-killer-zone">
+      <div class="killer-id-wrap">
+        <div class="killer-label">TRUE CULPRIT // 真凶</div>
+        <div class="killer-portrait-container">
+          <img v-if="realKiller" :src="realKiller.image" class="killer-photo-display" />
+          <div class="status-stamp-wrap" :class="isVictory ? 'captured' : 'escaped'">
+            {{ isVictory ? 'CAPTURED' : 'ESCAPED' }}
+          </div>
+        </div>
+        <h3 class="killer-name-tag">{{ realKiller?.name }}</h3>
+      </div>
+    </footer>
+
+    <div class="navigation-zone">
+      <button class="action-btn-metal back-home" @click="backToLobby">前往案件复盘</button>
+    </div>
+  </div>
+</div>

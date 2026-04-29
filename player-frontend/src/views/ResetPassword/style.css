@@ -1,0 +1,86 @@
+/* 页面整体容器：沿用深色背景与灰尘质感 */
+.reset-password-container {
+  position: relative;
+  background-color: #0d0d0d;
+  background-image: url("https://www.transparenttextures.com/patterns/dust.png");
+  color: #a89a85;
+  min-height: 100vh;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.content-wrapper {
+  max-width: 700px; /* 修改密码界面较窄，显得更严谨 */
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+/* 标题样式 */
+.archive-header { margin-bottom: 40px; text-align: center; }
+.archive-title {
+  color: #d32f2f;
+  font-size: 2rem;
+  text-shadow: 2px 2px 6px rgba(163, 29, 29, 0.4);
+}
+.archive-meta {
+  font-style: italic;
+  color: #777;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 10px;
+}
+.confidential-tag { color: #a31d1d; font-weight: bold; }
+.ink-divider { height: 3px; background: #2b221b; width: 80%; margin: 20px auto; }
+
+/* 表单区域：暗黑档案纸质感 */
+.form-section {
+  padding: 50px 40px;
+  position: relative;
+  background-color: #1a1a1a;
+  background-image: url("https://www.transparenttextures.com/patterns/old-mathematics.png");
+  box-shadow: 0 0 30px rgba(0,0,0,0.8);
+  border: 1px solid #2b221b;
+}
+
+.confidential-stamp {
+  position: absolute; top: 15px; right: 10px;
+  border: 2px solid #a31d1d; color: #a31d1d;
+  padding: 5px 10px; font-weight: 900; transform: rotate(15deg);
+  opacity: 0.4; pointer-events: none;
+}
+
+.section-subtitle {
+  color: #d32f2f;
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+/* 输入框样式 */
+.form-group { margin-bottom: 25px; }
+.form-group label { display: block; margin-bottom: 10px; color: #888; font-size: 0.9rem; }
+
+.dark-input {
+  width: 100%; padding: 12px; background-color: #000;
+  border: 1px solid #333; color: #ffcc00; /* 使用明显的金色作为输入文字 */
+  font-family: inherit; font-size: 1rem;
+}
+.dark-input:focus { border-color: #d32f2f; outline: none; box-shadow: 0 0 5px rgba(211, 47, 47, 0.5); }
+
+.ink-divider-small { height: 1px; background: #333; margin: 30px 0; border: none; }
+
+/* 操作按钮 */
+.footer-action { margin-top: 40px; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+
+.signature-btn {
+  border: 2px solid #ffcc00; padding: 12px 40px; cursor: pointer;
+  display: flex; align-items: center; gap: 10px; transition: 0.3s; color: #ffcc00;
+  font-weight: bold; font-size: 1.1rem;
+}
+.signature-btn:hover { background: #ffcc00; color: #000; box-shadow: 0 0 20px rgba(255, 204, 0, 0.4); }
+
+.back-link {
+  background: none; border: none; color: #555; cursor: pointer; 
+  text-decoration: underline; font-family: inherit;
+}
+.back-link:hover { color: #888; }

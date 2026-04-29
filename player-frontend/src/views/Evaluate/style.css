@@ -1,0 +1,366 @@
+/* 基础终端 */
+.review-terminal {
+  background: #121212;
+  color: #e0e0e0;
+  font-family: 'Consolas', 'Courier New', monospace;
+  padding: 30px;
+  min-height: 100vh;
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+  font-size: 16px;
+}
+
+/* 赛博朋克背景纹理 */
+.cyberpunk-bg::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0,255,213,0.03),
+    rgba(0,255,213,0.03) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 扫描线 */
+.scanline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #00ffd5;
+  box-shadow: 0 0 10px #00ffd5, 0 0 20px #00ffd5;
+  animation: scan 3s linear infinite;
+  z-index: 999;
+  opacity: 0.7;
+}
+@keyframes scan {
+  0% { top: 0; }
+  100% { top: 100%; }
+}
+
+/* 故障叠加 */
+.glitch-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,255,213,0.02);
+  animation: glitch 2s infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+@keyframes glitch {
+  0%{opacity:0.02} 50%{opacity:0.05} 100%{opacity:0.02}
+}
+
+/* 标题 */
+.glitch-text {
+  color: #00ffd5;
+  font-size: 30px;
+  text-shadow:
+    0 0 5px #00ffd5,
+    0 0 10px #00ffd5,
+    0 0 20px #00ffd5,
+    -2px 0 1px #ff00ff,2px 0 1px #00ffff;
+  position: relative;
+  animation: glow 2s infinite alternate;
+}
+.glow-text {
+  color: #00ffd5;
+  font-size: 22px;
+  text-shadow: 0 0 8px #00ffd5, 0 0 15px #00ffd5;
+}
+.glitch-tag {
+  color: #aaa;
+  font-size: 14px;
+  text-shadow: 0 0 3px #00ffd5;
+  letter-spacing: 2px;
+}
+
+/* 按钮 - 超清版 */
+.neon-btn {
+  background: #00ffd5 !important;
+  border: none;
+  color: #000 !important;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 22px;
+  border-radius: 4px;
+  transition: 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0,255,213,0.3);
+}
+.neon-btn:hover {
+  background: #33ffe0 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0,255,213,0.4);
+}
+
+/* 右上角按钮间距 */
+.action-buttons {
+  display: flex;
+  gap: 30px;
+}
+
+/* 搜索框 */
+.search-bar input {
+  background: #1a1a1a !important;
+  border: 1px solid #444;
+  color: #00ffd5 !important;
+  font-size: 16px;
+  padding: 12px 18px;
+  width: 420px;
+  outline: none;
+  border-radius: 4px;
+  box-shadow: 0 0 5px rgba(0,255,213,0.2);
+  transition: 0.3s;
+}
+.search-bar input:focus {
+  border-color: #00ffd5 !important;
+  box-shadow: 0 0 10px #00ffd5;
+}
+
+/* 输入框 */
+.neon-input, .neon-select, .neon-textarea {
+  background: #1a1a1a !important;
+  border: 1px solid #444;
+  color: #00ffd5 !important;
+  font-size: 16px;
+  box-shadow: 0 0 5px rgba(0,255,213,0.2);
+  transition: 0.3s;
+}
+.neon-input:focus, .neon-select:focus, .neon-textarea:focus {
+  border-color: #00ffd5 !important;
+  box-shadow: 0 0 10px #00ffd5;
+}
+
+/* 布局 */
+.system-header{display:flex;justify-content:space-between;margin-bottom:20px;position:relative;z-index:5}
+.terminal-header{border-bottom:2px solid #3d3d3d;padding-bottom:20px;margin-bottom:30px;position:relative;z-index:5}
+.terminal-body{display:flex;gap:50px;position:relative;z-index:5}
+
+/* 左侧边栏 */
+.sidebar {
+  width: 320px;
+  flex-shrink: 0;
+}
+.stat-item {
+  margin-bottom: 25px;
+}
+.stat-item .label {
+  font-size: 16px;
+  color: #aaa;
+}
+.stat-item .value {
+  font-size: 26px;
+}
+.online-pulse {
+  color: #00ffd5;
+  text-shadow: 0 0 8px rgba(0,255,213,0.6);
+}
+.pulse-fast {
+  animation: pulse 1.2s infinite alternate;
+}
+
+/* 导航项 */
+.neon-item {
+  padding: 18px;
+  font-size: 18px;
+  border-left: 4px solid transparent;
+  background: rgba(255,255,255,0.03);
+  margin-bottom: 12px;
+  transition: 0.3s;
+}
+.neon-item.active {
+  border-left-color: #00ffd5;
+  background: rgba(0,255,213,0.15) !important;
+  box-shadow: 0 0 8px #00ffd5;
+  text-shadow: 0 0 3px #00ffd5;
+}
+
+/* 发光卡片 */
+.glow-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid #333;
+  padding: 15px;
+  box-shadow: 0 0 8px rgba(0,255,213,0.15);
+  border-radius: 4px;
+}
+
+/* 主内容区 */
+.main-content {
+  flex: 1;
+}
+.section-title {
+  color: #00ffd5;
+  border-bottom: 1px solid #3d3d3d;
+  padding-bottom: 10px;
+  margin-top: 0;
+  font-size: 22px;
+}
+
+/* 提交面板 */
+.review-submit {
+  background: #1a1a1a !important;
+  border: 1px solid #444;
+  padding: 25px;
+  margin-bottom: 35px;
+}
+.neon-panel {
+  box-shadow: 0 0 15px rgba(0,255,213,0.15);
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+}
+.neon-panel::before {
+  content: '';
+  position: absolute; top:0; left:0; width:100%; height:2px;
+  background: linear-gradient(90deg, transparent, #00ffd5, transparent);
+  animation: border-flow 3s linear infinite;
+}
+@keyframes border-flow {
+  0%{transform:translateX(-100%)}
+  100%{transform:translateX(100%)}
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+.form-label {
+  color: #aaa;
+  font-size: 16px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* 评分星星 */
+.neon-stars {
+  display: flex;
+  gap: 8px;
+  font-size: 30px;
+  cursor: pointer;
+}
+.neon-stars span {
+  color: #333;
+  transition: 0.2s;
+}
+.neon-stars span.active {
+  color: #00ffd5;
+  text-shadow: 0 0 10px #00ffd5;
+  transform: scale(1.15);
+}
+.score-display {
+  color: #aaa;
+  font-size: 16px;
+  margin-left: 10px;
+}
+
+/* 评价卡片 */
+.reviews-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+  gap: 25px;
+}
+.neon-card {
+  background: #1a1a1a !important;
+  border: 1px solid #444;
+  padding: 20px;
+  border-radius: 6px;
+  transition: 0.3s;
+  position: relative;
+}
+.neon-card:hover {
+  border-color: #00ffd5;
+  box-shadow: 0 0 15px rgba(0,255,213,0.3);
+  transform: translateY(-3px);
+}
+.review-card__header {
+  display: flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:12px;
+}
+.review-card__type {
+  background: rgba(0,255,213,0.15);
+  color: #00ffd5;
+  font-size:14px;
+  padding:5px 10px;
+  border-radius:3px;
+}
+.review-card__score {
+  color: #00ffd5;
+  font-size:18px;
+  font-weight:bold;
+}
+.review-card__content {
+  color: #fff;
+  font-size:17px;
+  line-height:1.6;
+  margin-bottom:12px;
+}
+.review-card__time {
+  color: #aaa;
+  font-size:14px;
+  text-align:right;
+}
+
+/* 创新：卡片内星级显示 */
+.card-stars {
+  margin-top: 10px;
+  font-size: 14px;
+}
+.card-stars span {
+  color: #444;
+}
+.card-stars span.on {
+  color: #00ffd5;
+  text-shadow: 0 0 5px #00ffd5;
+}
+
+.empty-tip {
+  color: #888;
+  font-size:18px;
+  text-align:center;
+  padding:50px 0;
+  grid-column:1/-1;
+}
+
+/* ============================================================
+   赛博朋克 返回按钮
+   ============================================================ */
+.cyber-back-btn {
+  background: transparent;
+  color: #00ffd5;
+  border: 1px solid #00ffd5;
+  padding: 8px 16px;
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 1px;
+  height: fit-content;
+}
+
+.cyber-back-btn:hover {
+  background: rgba(0, 255, 213, 0.1);
+  box-shadow: 0 0 12px rgba(0, 255, 213, 0.6), inset 0 0 8px rgba(0, 255, 213, 0.4);
+  transform: translateX(-3px); /* 悬停时微微向左平移，暗示后退 */
+  text-shadow: 0 0 5px #00ffd5;
+}
+
+.cyber-back-btn:active {
+  transform: scale(0.95);
+}
+
+.cyber-back-btn .btn-icon {
+  font-size: 18px;
+  font-weight: bold;
+}

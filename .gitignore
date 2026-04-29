@@ -1,0 +1,5 @@
+node_modules/ 
+.venv/ 
+.idea/ 
+1/1/ 
+*.exe 

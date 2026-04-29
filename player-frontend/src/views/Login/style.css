@@ -1,0 +1,139 @@
+/* 背景容器 */
+.login-container {
+  background-color: #0d0d0d;
+  background-image: url("https://www.transparenttextures.com/patterns/dust.png");
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+/* 登录框主体 */
+.dark-parchment {
+  background-color: #1a1a1a;
+  background-image: url("https://www.transparenttextures.com/patterns/old-mathematics.png");
+  border: 1px solid #2b221b;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+  width: 450px;
+  padding: 40px;
+  position: relative;
+}
+
+/* 装饰印章 */
+.confidential-stamp {
+  position: absolute;
+  top: 20px;
+  right: -10px;
+  border: 2px solid #451010;
+  color: #451010;
+  padding: 2px 10px;
+  transform: rotate(15deg);
+  font-weight: bold;
+  opacity: 0.6;
+}
+
+/* 标题区 */
+.login-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.login-title {
+  color: #d32f2f;
+  font-size: 1.8rem;
+  letter-spacing: 4px;
+}
+.login-subtitle {
+  color: #555;
+  font-size: 0.8rem;
+  margin-top: 5px;
+}
+
+/* 切换菜单 */
+.tab-menu {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  color: #555;
+}
+.tab-menu span {
+  cursor: pointer;
+  transition: 0.3s;
+}
+.tab-menu span.active {
+  color: #a31d1d;
+  font-weight: bold;
+  text-shadow: 0 0 5px rgba(163, 29, 29, 0.5);
+}
+.v-line { color: #2b221b; cursor: default !important; }
+
+/* 表单输入框 */
+.form-group {
+  margin-bottom: 18px;
+}
+
+/* 让输入框内的提示文字也亮一点 */
+.dark-input::placeholder {
+  color: #555; /* 原本可能更暗，调成这个颜色 */
+}
+
+/* 标签文字*/
+.form-group label {
+  display: block;
+  /* color: #777;  <-- 这是原来的颜色，太暗了 */
+  color: #c9b9a5;   /* 修改为：明亮的淡米色 */
+  font-size: 0.9rem; /* 稍微加大一点点，从0.8提高到0.9 */
+  font-weight: bold; /* 加粗，增加辨识度 */
+  margin-bottom: 8px;
+  letter-spacing: 1px; /* 增加字间距，更有质感 */
+}
+.dark-input {
+  width: 100%;
+  background: #0d0d0d;
+  border: 1px solid #2b221b;
+  color: #a89a85;
+  padding: 12px;
+  box-sizing: border-box;
+  outline: none;
+  font-family: inherit;
+  transition: 0.3s;
+}
+.dark-input:focus {
+  border-color: #a31d1d;
+  box-shadow: inset 0 0 5px rgba(163, 29, 29, 0.2);
+}
+
+/* 提交按钮：亮金色 */
+.login-actions {
+  margin-top: 30px;
+}
+.gold-btn {
+  width: 100%;
+  background: #2b221b;
+  color: #ffcc00; /* 金色字体 */
+  border: 1px solid #ffcc00;
+  padding: 14px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.4s;
+  text-shadow: 0 0 8px rgba(255, 204, 0, 0.4);
+}
+.gold-btn:hover {
+  background: #ffcc00;
+  color: #000;
+  box-shadow: 0 0 20px rgba(255, 204, 0, 0.5);
+}
+
+/* 页脚 */
+.login-footer {
+  margin-top: 25px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #555;
+}
+.text-red { color: #a31d1d; }
+.link { cursor: pointer; text-decoration: underline; }
+.link:hover { color: #ff3333; }

@@ -1,0 +1,239 @@
+/* ============================================================
+   1. 基础容器与全局氛围（保持不动）
+   ============================================================ */
+.result-page {
+    min-height: 100vh;
+    width: 100%;
+    background-color: #050505;
+    background-image:
+        radial-gradient(circle at 50% 0%, rgba(201, 188, 160, 0.08) 0%, transparent 50%),
+        url("https://www.transparenttextures.com/patterns/stardust.png"),
+        radial-gradient(circle at 50% 20%, #1a1612 0%, #0a0807 40%, #050505 100%);
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 0;
+    position: relative;
+    color: #a8b2bd;
+    overflow-x: hidden;
+    font-family: "Microsoft YaHei", "SimSun", sans-serif;
+}
+
+.result-main-container {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 20;
+}
+
+/* ============================================================
+   2. 【监狱区】核心修正：强制横版，对齐真凶 (220px)
+   ============================================================ */
+.judgment-sector {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.prison-cell-outer {
+    /* 物理对齐：宽度 220px，高度 140px（横版比例） */
+    width: 220px;
+    height: 140px;
+    background: #000;
+    position: relative;
+    border: 8px solid #3a2e24;
+    border-radius: 2px;
+    overflow: hidden;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.9);
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.cell-frame-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.suspect-mugshot-fit {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 确保横版充满 */
+    filter: grayscale(1) contrast(1.2);
+    display: block;
+}
+
+/* 铁栅栏：改为横向对开门（Sliding Doors） */
+.prison-bars {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background: repeating-linear-gradient(90deg, transparent, transparent 15px, #222 15px, #444 20px, #111 22px);
+    z-index: 10;
+    transition: all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.prison-bars.left-bar { left: -55%; border-right: 2px solid #111; }
+.prison-bars.right-bar { right: -55%; border-left: 2px solid #111; }
+
+.accused-name-display {
+    margin-top: 15px;
+    font-size: 1.2rem;
+    color: #e0d5c1; /* 羊皮纸色，与真相文字呼应 */
+    letter-spacing: 4px;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(0,0,0,0.8);
+    /* 配合动画：初始隐藏，随铁栏落下显现 */
+    opacity: 0.8;
+}
+
+.prison-bars.left-bar.slammed { left: 0; }
+.prison-bars.right-bar.slammed { right: 0; }
+
+/* ============================================================
+   3. 【判定样式】：银色金属蚀刻效果
+   ============================================================ */
+.verdict-headline {
+    font-size: 2.8rem;
+    letter-spacing: 10px;
+    margin-top: 20px;
+    font-weight: 900;
+    /* 银色金属渐变 */
+    background: linear-gradient(to bottom, #ffffff 20%, #a8b2bd 100%);
+    -webkit-background-clip: text;
+    background-clip: text; /* 添加这一行以消除警告 */
+    -webkit-text-fill-color: transparent;
+    /* 增加深邃投影 */
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.2)) drop-shadow(2px 4px 6px rgba(0,0,0,0.8));
+}
+
+/* ============================================================
+   4. 【案件真相】：大跨度悬疑风格 (The Decryption Void)
+   ============================================================ */
+.truth-dossier {
+    width: 100%;
+    margin: 40px 0;
+}
+
+.sonar-scanner-effect {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 60px 50px;
+    /* 核心：模拟手电筒直射深夜档案的效果 */
+    background:
+        radial-gradient(circle at center, rgba(181, 164, 130, 0.1) 0%, transparent 75%),
+        rgba(10, 10, 10, 0.95);
+
+    /* 跨度：不规则切边（模拟撕下的残页） */
+    clip-path: polygon(1% 2%, 99% 0%, 100% 98%, 2% 100%);
+
+    /* 补全遮罩前缀：羽化消失感 */
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+
+    border: 1px solid rgba(181, 164, 130, 0.08);
+    box-shadow: 0 50px 100px rgba(0,0,0,0.9);
+    overflow: hidden;
+}
+
+/* 背景隐形水印：解密序列 */
+.sonar-scanner-effect::before {
+    content: "DECRYPTING... [40.7128° N, 74.0060° W]";
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-family: monospace;
+    font-size: 0.75rem;
+    color: #b5a482;
+    opacity: 0.2;
+    letter-spacing: 2px;
+}
+
+/* 真相文字：模拟显影过程 */
+.truth-p-row {
+    color: #d1c7b1; /* 枯萎羊皮纸色 */
+    line-height: 2.2;
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+    text-align: justify;
+    letter-spacing: 1.5px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.9);
+
+    /* 初始显影状态：模糊、微小 */
+    opacity: 0;
+    filter: blur(8px);
+    transform: scale(0.96);
+    transition: all 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* 当文字激活时 (需在JS中给 p 添加 revealed 类) */
+.truth-p-row.revealed {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
+}
+
+/* ============================================================
+   5. 【真凶区】（保持不动）
+   ============================================================ */
+.final-killer-zone {
+    margin-top: 80px;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.killer-portrait-container {
+    position: relative;
+    display: inline-block;
+    width: 220px; /* 固定宽度对齐 */
+    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+}
+
+.killer-photo-display {
+    width: 100%;
+    border: 3px solid #fff;
+    display: block;
+}
+
+.status-stamp-wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-15deg);
+    border: 4px double #8a1a1a;
+    color: #8a1a1a;
+    font-size: 3rem;
+    font-weight: 900;
+    padding: 10px 20px;
+    z-index: 100;
+    background: rgba(138, 26, 26, 0.05);
+    pointer-events: none;
+}
+
+.escaped { color: #f44336; border-color: #f44336; animation: red-glow-pulse 1s infinite; }
+.captured { color: #4caf50; border-color: #4caf50; }
+
+@keyframes red-glow-pulse {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; text-shadow: 0 0 15px #f44336; }
+}
+
+.killer-name-tag { color: #fff; font-size: 1.8rem; letter-spacing: 5px; margin-top: 15px; font-weight: 900; }
+.action-btn-metal {
+    background: transparent;
+    color: #888;
+    border: 1px solid #444;
+    padding: 12px 40px;
+    cursor: pointer;
+    letter-spacing: 2px;
+    margin-top: 60px;
+    transition: all 0.3s;
+}
+.action-btn-metal:hover { color: #fff; border-color: #fff; }

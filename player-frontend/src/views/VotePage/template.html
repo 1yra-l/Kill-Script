@@ -1,0 +1,68 @@
+<div class="vote-page">
+  <NavBar />
+
+  <main class="vote-container">
+    <header class="detective-header">
+      <div class="case-file-header">
+        <span class="file-number">TOP SECRET // CASE-0413</span>
+        <h1 class="engraved-title">嫌疑人指控板</h1>
+        <div class="header-divider"></div>
+      </div>
+    </header>
+
+    <div class="dossier-board">
+      <div
+        v-for="candidate in candidates"
+        :key="candidate.id"
+        class="evidence-item"
+        :class="{ 'is-accused': selectedId === candidate.id }"
+        @click="selectCandidate(candidate.id)"
+      >
+        <div class="push-pin"></div>
+
+        <div class="evidence-paper">
+          <div class="photo-mount">
+            <div class="corner-tape top-left"></div>
+            <div class="corner-tape bottom-right"></div>
+            <!-- <img :src="candidate.image" class="suspect-mugshot" /> -->
+
+            <img 
+              v-if="candidate.image_url"
+              :src="getImageSrc(candidate.image_url)" 
+              class="suspect-mugshot" 
+              alt="嫌疑人照片"
+            />
+            
+            <div v-else class="suspect-placeholder">👤</div>
+            <div class="photo-name-tag">{{ candidate.name }}</div>
+          </div>
+
+          <div class="evidence-details">
+            <p class="role-text">STATUS: {{ candidate.role }}</p>
+          </div>
+
+          <transition name="stamp-slam">
+            <div class="verdict-stamp" v-if="selectedId === candidate.id">GUILTY</div>
+          </transition>
+        </div>
+      </div>
+    </div>
+
+    <div class="control-console" :class="{ 'active': selectedId }">
+      <div class="console-inner">
+        <div class="scanner-line"></div>
+        <div class="target-info">
+          <span class="label">SUBJECT IDENTIFIED:</span>
+          <span class="name-val">{{ selectedCandidate?.name }}</span>
+        </div>
+        <div class="button-row">
+          <button class="btn-cancel" @click="goBack">CANCEL</button>
+          <button class="btn-accuse-ultimate" @click="submitVote">
+            <span class="fingerprint-icon"></span>
+            锁定真凶
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

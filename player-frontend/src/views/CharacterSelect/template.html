@@ -1,0 +1,62 @@
+<div class="page-container">
+  <NavBar />
+
+  <main class="content-wrapper">
+    <header class="title-section">
+      <h1 class="main-title">受托人名册：认领你的身份</h1>
+      <p class="desc-text">一旦签字，你将深陷这桩名为“真实”的泥沼...</p>
+    </header>
+
+    <div class="desk-layout">
+      <aside class="photo-area-scroll">
+        <div
+          v-for="char in characters"
+          :key="char.id"
+          class="evidence-photo"
+          :class="{ 'photo-selected': selectedId === char.id }"
+          @click="selectedId = char.id"
+        >
+          <div class="paper-clip"></div>
+          <div class="img-placeholder">{{ char.avatar }}</div>
+          <p class="name-tag">{{ char.name }}</p>
+        </div>
+      </aside>
+
+      <section class="parchment-paper" v-if="selectedChar">
+        <div class="paper-curl"></div>
+
+        <div class="paper-inner">
+          <div class="confidential-stamp">TOP SECRET</div>
+
+          <h2 class="char-title">{{ selectedChar.name }}</h2>
+          <div class="ink-line"></div>
+
+          <div class="stats-box">
+            <p><strong>职业定向：</strong>{{ selectedChar.job }}</p>
+            <p><strong>生理年龄：</strong>{{ selectedChar.age }}</p>
+            <p><strong>生理性别：</strong>{{ selectedChar.gender }}</p>
+          </div>
+
+          <div class="bio-section">
+            <h3>【 背景简述 】</h3>
+            <p class="typewriter-text">{{ selectedChar.desc }}</p>
+          </div>
+
+          <div class="secret-section">
+            <h3 class="warning">【 不可告人的秘密 】</h3>
+            <div class="blur-box">
+              <span class="redacted">由于案件尚未开启，该段落已被 <span class="ink-blob">黑色墨水</span> 覆盖。</span>
+            </div>
+          </div>
+
+          <div class="footer-sign">
+            <div class="signature-btn" @click="confirmSelection">
+              <span class="stamp-icon">㊙️</span>
+              <span>按下手印 (确认入场)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>

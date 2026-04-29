@@ -1,0 +1,64 @@
+<div class="profile-page">
+  <div class="glitch-overlay"></div>
+
+  <button class="cyber-back-btn" @click="goUserCenter">
+    <span class="btn-icon">ᐊ</span> 返回个人中心
+  </button>
+
+  <div class="page-container">
+    <div class="page-header">
+      <h2 class="glitch-text">📂 个人档案修改</h2>
+      <p class="system-tag">SYSTEM: USER_PROFILE_EDIT</p>
+    </div>
+
+    <div class="form-box">
+      <!-- 头像上传区域 -->
+      <div class="form-item" style="text-align:center;">
+        <div class="avatar-upload" @click="triggerAvatar">
+          <img v-if="avatar" :src="avatar" class="avatar-img" />
+          <div v-else class="avatar-tip">点击上传头像</div>
+        </div>
+      </div>
+
+      <div class="form-item">
+        <label>用户姓名</label>
+        <input v-model="form.name" class="neon-input" placeholder="请输入姓名" />
+      </div>
+
+      <div class="form-item">
+        <label>个性签名</label>
+        <textarea v-model="form.signature" class="neon-input" rows="3"></textarea>
+      </div>
+
+      <div class="form-item">
+        <label>性别</label>
+        <select v-model="form.gender" class="neon-input">
+          <option value="">请选择</option>
+          <option value="男">男</option>
+          <option value="女">女</option>
+          <option value="保密">保密</option>
+        </select>
+      </div>
+
+      <div class="form-item">
+        <label>生日</label>
+        <input v-model="form.birthday" type="date" class="neon-input" />
+      </div>
+
+      <div class="form-item">
+        <label>所在地</label>
+        <select v-model="province" class="neon-input">
+          <option value="">请选择省份</option>
+          <option v-for="p in provinces" :key="p.value" :value="p.label">
+            {{ p.label }}
+          </option>
+        </select>
+      </div>
+
+      <div class="btn-group">
+        <button class="neon-btn" @click="goAuth">前往实名认证</button>
+        <button class="neon-btn" @click="save">保存修改</button>
+      </div>
+    </div>
+  </div>
+</div>

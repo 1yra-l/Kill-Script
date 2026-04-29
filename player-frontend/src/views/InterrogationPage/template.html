@@ -1,0 +1,31 @@
+<div class="interrogation-page">
+  <NavBar />
+  <div class="main-layout">
+    <header class="status-bar">
+      <span class="location"><span class="blink-dot"></span> 警局审讯室 (03)</span>
+      <div class="header-controls">
+        <button class="read-script-btn" @click="goToScript">
+          <span class="icon">📖</span> 记忆碎片
+        </button>
+        <button class="search-clues-btn" @click="goToClues">
+          <span class="icon">🔍</span> 线索搜寻
+        </button>
+      </div>
+    </header>
+
+    <div class="content-body">
+      <main class="chat-section">
+        <ChatWindow
+          :messages="messages"
+          :isRecording="isRecording"
+          @send="onSendMessage"
+          @start-record="startRecording"
+          @stop-record="stopRecording"
+        />
+      </main>
+      <aside class="side-section">
+        <ClueNotebook :clues="clues" />
+      </aside>
+    </div>
+  </div>
+</div>

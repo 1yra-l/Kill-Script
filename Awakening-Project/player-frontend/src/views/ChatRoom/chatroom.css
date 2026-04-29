@@ -1,0 +1,291 @@
+/* ============================================================
+   终端基础样式
+   ============================================================ */
+.chat-terminal {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  font-family: 'Consolas', 'Courier New', monospace;
+  min-height: 100vh;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.terminal-header {
+  border-bottom: 2px solid #3d3d3d;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+.system-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.system-tag {
+  font-size: 12px;
+  color: #888;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.terminal-title {
+  color: #fff;
+  font-size: 24px;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+/* 霓虹按钮 */
+.nav-btn {
+  background: transparent;
+  border: 1px solid #00ffd5;
+  color: #00ffd5;
+  padding: 8px 20px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 5px rgba(0, 255, 213, 0.2);
+}
+.nav-btn:hover {
+  background: rgba(0, 255, 213, 0.1);
+  box-shadow: 0 0 15px rgba(0, 255, 213, 0.4);
+  transform: translateY(-2px);
+}
+
+/* 主体内容布局 */
+.terminal-body {
+  display: flex;
+  gap: 30px;
+  flex: 1;
+  height: 650px; /* 固定高度确保内部滚动 */
+}
+
+/* ============================================================
+   统一滚动条样式 & 开启平滑滚动
+   ============================================================ */
+.scroll-container {
+  scroll-behavior: smooth; /* 增加平滑滚动效果 */
+}
+.scroll-container::-webkit-scrollbar { width: 6px; }
+.scroll-container::-webkit-scrollbar-track { background: #1a1a1a; }
+.scroll-container::-webkit-scrollbar-thumb { background: #4d4d4d; border-radius: 3px; }
+.scroll-container::-webkit-scrollbar-thumb:hover { background: #00ffd5; }
+
+/* ============================================================
+   左侧：联系人面板
+   ============================================================ */
+.contact-panel {
+  width: 320px;
+  background: #252525;
+  border: 1px solid #3d3d3d;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  height: 450px;       /* 固定高度 */
+  max-height: 650px;   /* 极限限制 */
+  overflow: hidden;    /* 核心杀手锏：切断子元素撑开父容器的可能 */
+}
+
+.panel-header {
+  padding: 15px 20px;
+  background: #2a2a2a;
+  border-bottom: 1px solid #3d3d3d;
+}
+.header-label {
+  font-size: 14px;
+  color: #888;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.contact-list {
+  flex: 1;           /* 占据剩余空间 */
+  min-height: 0;     /* 关键：防止内容撑开父元素导致无法滚动 */
+  overflow-y: auto;  /* 开启垂直滚动 */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-right: 5px;
+}
+
+/* 独立联系人卡片 */
+.contact-card {
+  background: #2a2a2a;
+  border: 1px solid #3d3d3d;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  transition: 0.2s;
+  flex-shrink: 0; /* 防止卡片被挤压缩小 */
+}
+.contact-card:hover {
+  border-color: #555;
+  background: #333;
+}
+.contact-card.active {
+  border-color: #00ffd5;
+  background: rgba(0, 255, 213, 0.05);
+  box-shadow: inset 0 0 10px rgba(0, 255, 213, 0.1);
+}
+
+.contact-avatar {
+  font-size: 24px;
+  width: 45px;
+  height: 45px;
+  background: #1a1a1a;
+  border: 1px solid #444;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 15px;
+}
+.contact-name {
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+}
+.contact-status {
+  font-size: 12px;
+  color: #888;
+  margin-top: 4px;
+}
+.active .contact-status {
+  color: #00ffd5;
+}
+
+/* 状态灯 */
+.status-indicator {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.status-indicator.online { background: #00ffd5; box-shadow: 0 0 5px #00ffd5; }
+.status-indicator.offline { background: #555; }
+
+/* ============================================================
+   右侧：聊天窗口面板
+   ============================================================ */
+.chat-panel {
+  flex: 1;
+  background: #252525;
+  border: 1px solid #3d3d3d;
+  display: flex;
+  flex-direction: column;
+  height: 450px;       /* 固定高度 */
+  max-height: 650px;   /* 极限限制 */
+  overflow: hidden;    /* 核心杀手锏：切断子元素撑开父容器的可能 */
+}
+
+.chat-panel-header {
+  padding: 15px 20px;
+  background: #2a2a2a;
+  border-bottom: 1px solid #3d3d3d;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.prompt-arrow { color: #00ffd5; margin-right: 8px; font-weight: bold; }
+.target-label { color: #888; margin-right: 10px; }
+.target-name { color: #fff; font-weight: bold; font-size: 18px; }
+.encryption-status { color: #00ffd5; font-size: 12px; letter-spacing: 1px; }
+
+/* 聊天记录滑动区域 */
+.message-area {
+  flex: 1;          /* 占据中间剩余空间 */
+  min-height: 0;    /* 关键：防止内容撑开父元素 */
+  overflow-y: auto; /* 开启垂直滚动 */
+  padding: 20px 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.no-contact-selected {
+  text-align: center;
+  color: #00ffd5;
+  margin-top: 50px;
+  font-size: 18px;
+}
+.blink-cursor { animation: blink 1s step-end infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+/* 终端风格气泡 */
+.message-wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 80%;
+  flex-shrink: 0; /* 防止气泡被挤压缩小 */
+}
+.msg-self { align-self: flex-end; }
+.msg-other { align-self: flex-start; }
+
+.msg-header {
+  font-size: 12px;
+  margin-bottom: 5px;
+  display: flex;
+  gap: 10px;
+}
+.msg-self .msg-header { justify-content: flex-end; }
+
+.msg-time { color: #888; }
+.msg-sender { color: #aaa; font-weight: bold; }
+.msg-self .msg-sender { color: #00ffd5; }
+
+.msg-bubble {
+  padding: 12px 18px;
+  font-size: 15px;
+  line-height: 1.5;
+  word-break: break-all;
+}
+
+/* 对方消息：左侧边框，暗灰底 */
+.msg-other .msg-bubble {
+  background: rgba(255, 255, 255, 0.03);
+  border-left: 3px solid #555;
+  color: #ddd;
+}
+/* 己方消息：右侧青色边框，微青底 */
+.msg-self .msg-bubble {
+  background: rgba(0, 255, 213, 0.05);
+  border-right: 3px solid #00ffd5;
+  color: #fff;
+  text-align: right;
+}
+
+/* 底部输入区 */
+.chat-input-area {
+  padding: 15px 20px;
+  background: #2a2a2a;
+  border-top: 1px solid #3d3d3d;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.cyber-input {
+  flex: 1;
+  background: #1a1a1a;
+  border: 1px solid #4d4d4d;
+  color: #00ffd5;
+  padding: 12px 15px;
+  font-family: inherit;
+  font-size: 16px;
+  outline: none;
+  transition: 0.3s;
+}
+.cyber-input:focus {
+  border-color: #00ffd5;
+  box-shadow: inset 0 0 5px rgba(0, 255, 213, 0.2);
+}
+.send-btn {
+  padding: 12px 25px;
+}

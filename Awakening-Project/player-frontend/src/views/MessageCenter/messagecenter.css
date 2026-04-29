@@ -1,0 +1,490 @@
+/* ============================================================
+   终端基础样式 (赛博极客风)
+   ============================================================ */
+.message-terminal {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  font-family: 'Consolas', 'Courier New', monospace;
+  min-height: 100vh;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.terminal-header {
+  border-bottom: 2px solid #3d3d3d;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+.system-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.system-tag {
+  font-size: 12px;
+  color: #888;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.terminal-title {
+  color: #fff;
+  font-size: 24px;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+/* 霓虹按钮 */
+.nav-btn {
+  background: transparent;
+  border: 1px solid #00ffd5;
+  color: #00ffd5;
+  padding: 8px 20px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 5px rgba(0, 255, 213, 0.2);
+}
+.nav-btn:hover {
+  background: rgba(0, 255, 213, 0.1);
+  box-shadow: 0 0 15px rgba(0, 255, 213, 0.4);
+  transform: translateY(-2px);
+}
+
+/* 危险操作按钮 (红色) */
+.danger-btn {
+  border-color: #ff4444;
+  color: #ff4444;
+  box-shadow: 0 0 5px rgba(255, 68, 68, 0.2);
+}
+.danger-btn:hover {
+  background: rgba(255, 68, 68, 0.1);
+  box-shadow: 0 0 15px rgba(255, 68, 68, 0.4);
+}
+
+/* 统一滚动条样式 */
+.scroll-container { scroll-behavior: smooth; }
+.scroll-container::-webkit-scrollbar { width: 6px; }
+.scroll-container::-webkit-scrollbar-track { background: #1a1a1a; }
+.scroll-container::-webkit-scrollbar-thumb { background: #4d4d4d; border-radius: 3px; }
+.scroll-container::-webkit-scrollbar-thumb:hover { background: #00ffd5; }
+
+/* 主体内容布局 */
+.terminal-body {
+  display: flex;
+  gap: 30px;
+  flex: 1;
+}
+
+/* ============================================================
+   左侧：分类面板
+   ============================================================ */
+.category-panel {
+  width: 280px;
+  background: #252525;
+  border: 1px solid #3d3d3d;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  height: 450px;       /* 强制固定高度 */  /* 极限高度限制 */
+  overflow: hidden;    /* 超出面板边缘的直接切掉 */
+}
+
+.panel-header {
+  padding: 15px 20px;
+  background: #2a2a2a;
+  border-bottom: 1px solid #3d3d3d;
+}
+.header-label {
+  font-size: 14px;
+  color: #888;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.category-list {
+  flex: 1 1 0;         /* 核心：允许放大缩小，基础高度强制设为0 */
+  min-height: 0;       /* 防止内容撑开父级 */
+  overflow-y: auto;    /* 内容超出时内部滑动 */
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.category-item {
+  padding: 15px;
+  background: rgba(0,0,0,0.2);
+  border: 1px solid #3d3d3d;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.2s;
+}
+.category-item:hover {
+  border-color: #555;
+  background: #333;
+}
+.category-item.active {
+  border-color: #00ffd5;
+  background: rgba(0, 255, 213, 0.05);
+  box-shadow: inset 0 0 10px rgba(0, 255, 213, 0.1);
+}
+
+.cat-info { display: flex; align-items: center; gap: 10px; }
+.cat-icon { font-size: 18px; }
+.cat-name-group { display: flex; flex-direction: column; }
+.cat-name { font-weight: bold; color: #e0e0e0; font-size: 15px; }
+.active .cat-name { color: #00ffd5; }
+.cat-en { font-size: 11px; color: #888; }
+
+/* 未读红点徽章 */
+.badge {
+  background: #ff4444;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 2px 8px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(255,68,68,0.5);
+}
+
+/* ============================================================
+   右侧：消息列表面板
+   ============================================================ */
+.message-panel {
+  flex: 1;
+  background: #252525;
+  border: 1px solid #3d3d3d;
+  display: flex;
+  flex-direction: column;
+  height: 450px;       /* 强制固定高度 */
+  max-height: 450px;   /* 极限高度限制 */
+  overflow: hidden;    /* 超出面板边缘的直接切掉 */
+}
+
+.message-panel-header {
+  padding: 15px 25px;
+  background: #2a2a2a;
+  border-bottom: 1px solid #3d3d3d;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+.msg-count-info { color: #888; font-size: 14px; }
+.mark-read-btn { background: none; border: none; color: #00ffd5; cursor: pointer; font-family: inherit; font-size: 14px; transition: 0.3s; }
+.mark-read-btn:hover { text-shadow: 0 0 8px #00ffd5; }
+
+/* 消息列表区（独立滑动关键） */
+.message-list-area {
+  flex: 1 1 0;         /* 核心：允许放大缩小，基础高度强制设为0 */
+  min-height: 0;       /* 防止内容撑开父级 */
+  overflow-y: auto;    /* 内容超出时内部滑动 */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.empty-state { text-align: center; color: #555; margin-top: 100px; font-size: 16px; letter-spacing: 1px; }
+.blink-cursor { animation: blink 1s step-end infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+/* ============================================================
+   消息卡片 (手风琴展开样式)
+   ============================================================ */
+.message-card {
+  background: #2a2a2a;
+  border: 1px solid #3d3d3d;
+  border-left: 4px solid #555; /* 默认左边框 */
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+.message-card:hover { border-color: #555; background: #333; }
+
+/* 未读状态高亮 */
+.message-card.unread {
+  border-left-color: #00ffd5;
+  background: rgba(0, 255, 213, 0.03);
+}
+/* 警告类型消息强化 */
+.message-card.type-alert { border-left-color: #ff4444; }
+.message-card.type-alert.unread { background: rgba(255, 68, 68, 0.05); }
+
+/* 卡片简略头部 (点击区) */
+.msg-summary {
+  padding: 15px 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.msg-main-info { display: flex; flex-direction: column; gap: 5px; }
+.msg-title { font-size: 16px; font-weight: bold; color: #e0e0e0; transition: 0.2s; }
+.message-card.unread .msg-title { color: #fff; }
+.message-card:hover .msg-title { color: #00ffd5; }
+.message-card.type-alert:hover .msg-title { color: #ff4444; }
+
+.msg-meta { font-size: 12px; color: #888; display: flex; gap: 15px; }
+.msg-sender { color: #aaa; }
+
+.expand-icon { color: #888; font-size: 18px; transition: 0.3s; }
+.is-expanded .expand-icon { transform: rotate(180deg); color: #00ffd5; }
+
+/* 卡片展开后的详情内容 */
+.msg-detail {
+  padding: 0 20px 20px 20px;
+  border-top: 1px dashed #444;
+  margin-top: 5px;
+  padding-top: 20px;
+  animation: slideDown 0.3s ease;
+}
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.msg-body {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #ccc;
+  margin-bottom: 20px;
+  white-space: pre-wrap; /* 保留文本换行 */
+}
+
+.msg-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+.friends-section {
+  border-top: 1px solid #3d3d3d;
+  padding: 15px;
+  background: #1e1e1e;
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto; /* 固定高度，不参与伸缩 */
+  max-height: 300px; /* 限制最大高度 */
+  overflow: hidden;
+}
+
+.friends-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #333;
+}
+
+.friends-title {
+  font-size: 13px;
+  color: #00ffd5;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.go-chat-btn {
+  background: transparent;
+  border: 1px solid #00ffd5;
+  color: #00ffd5;
+  padding: 5px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: all 0.3s;
+  font-family: inherit;
+}
+
+.go-chat-btn:hover {
+  background: rgba(0, 255, 213, 0.1);
+  box-shadow: 0 0 10px rgba(0, 255, 213, 0.3);
+}
+
+/* 好友列表 */
+.friends-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-right: 5px;
+}
+
+/* 好友列表滚动条 */
+.friends-list::-webkit-scrollbar {
+  width: 4px;
+}
+.friends-list::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+.friends-list::-webkit-scrollbar-thumb {
+  background: #4d4d4d;
+  border-radius: 2px;
+}
+.friends-list::-webkit-scrollbar-thumb:hover {
+  background: #00ffd5;
+}
+
+/* 好友项 */
+.friend-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background: #252525;
+  border: 1px solid #3d3d3d;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.friend-item:hover {
+  border-color: #00ffd5;
+  background: #2a2a2a;
+  transform: translateX(3px);
+}
+
+.friend-item.online {
+  border-left: 3px solid #00ffd5;
+}
+
+.friend-item.has-unread {
+  border-right: 3px solid #ff4444;
+}
+
+/* 好友头像 */
+.friend-avatar {
+  position: relative;
+  font-size: 24px;
+  margin-right: 12px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #333;
+  border-radius: 50%;
+}
+
+.online-dot {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 8px;
+  height: 8px;
+  background: #00ffd5;
+  border-radius: 50%;
+  border: 2px solid #252525;
+  box-shadow: 0 0 5px #00ffd5;
+}
+
+/* 好友信息 */
+.friend-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow: hidden;
+}
+
+.friend-name {
+  color: #e0e0e0;
+  font-size: 14px;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.friend-status {
+  font-size: 11px;
+}
+
+.status-online {
+  color: #00ffd5;
+  background: rgba(0, 255, 213, 0.1);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.status-offline {
+  color: #888;
+  background: rgba(136, 136, 136, 0.1);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+/* 好友未读徽章 */
+.friend-unread-badge {
+  background: #ff4444;
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  box-shadow: 0 0 8px rgba(255, 68, 68, 0.5);
+}
+
+/* 好友跳转箭头 */
+.friend-action {
+  color: #888;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+.friend-item:hover .friend-action {
+  color: #00ffd5;
+  transform: translateX(3px);
+}
+
+/* 消息卡片中的好友元信息 */
+.friend-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 15px;
+}
+
+.friend-avatar-small {
+  font-size: 14px;
+}
+
+.friend-status-small {
+  font-size: 11px;
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+.friend-status-small.online {
+  color: #00ffd5;
+  background: rgba(0, 255, 213, 0.1);
+}
+
+.friend-status-small.offline {
+  color: #888;
+  background: rgba(136, 136, 136, 0.1);
+}
+
+/* 在线好友数量 */
+.online-count {
+  color: #00ffd5;
+  margin-left: 10px;
+  font-size: 12px;
+  background: rgba(0, 255, 213, 0.1);
+  padding: 2px 6px;
+  border-radius: 3px;
+}

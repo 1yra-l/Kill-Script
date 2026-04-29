@@ -1,0 +1,339 @@
+/* ============================================================
+   ScriptDetails.css - 档案感剧本详情样式 (最终优化版)
+   ============================================================ */
+
+/* 全局基础样式 */
+.script-details {
+    background-color: #0d0d0d;
+    color: #e8d9c2;
+    font-family: "Georgia", "Times New Roman", "STFangSong", "FangSong", serif;
+    min-height: 100vh;
+    padding-bottom: 60px;
+}
+
+/* 头部大图区域 */
+.header {
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: 15px 60px;
+}
+
+.header-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(15,10,10,0.1), rgba(15,10,10,0.95));
+}
+
+.header-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+}
+
+.main-title {
+    font-size: 48px;
+    margin: 0;
+    color: #fff;
+    line-height: 1.1;
+}
+
+.en-title {
+    font-family: cursive;
+    color: #8b1e1e;
+    font-size: 28px;
+    margin-top: -5px;
+}
+
+.description-text p {
+    font-size: 16px;
+    margin: 10px 0 0 0;
+}
+
+.top-secret-stamp {
+    position: absolute;
+    top: 20px;
+    right: 80px;
+    border: 4px solid #5a1212;
+    color: #5a1212;
+    padding: 5px 20px;
+    font-size: 24px;
+    font-weight: bold;
+    transform: rotate(15deg);
+    opacity: 0.7;
+}
+
+/* ================= 核心修改：主内容布局 ================= */
+.main-content {
+    display: grid;
+    /* 调整了比例，让中间评分不要太窄 */
+    grid-template-columns: 1.5fr 0.8fr 1.2fr;
+    gap: 25px;
+    padding: 10px 40px;
+    max-width: 1300px;    /* 【关键限制】限制最大宽度，不再无限拉长 */
+    margin: 0 auto;       /* 居中显示 */
+    align-items: stretch; /* 【关键对齐】强制三个 grid 子元素等高对齐 */
+}
+
+/* 通用面板容器 */
+.panel {
+    background: rgba(20, 20, 20, 0.8);
+    border-radius: 4px;
+    /* 移除了固定的 min-height，依靠 align-items: stretch 自动撑满高度 */
+}
+
+.panel-header {
+    color: #2a1e12;
+    font-weight: bold;
+    border-bottom: 1px dashed rgba(61, 43, 31, 0.3);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: 22px;
+}
+
+/* 牛皮纸容器：配合 stretch 实现内部元素也等高 */
+.parchment-container {
+    background-size: 100% 100% !important;
+    background-repeat: no-repeat !important;
+    background-color: transparent !important;
+    border: none !important;
+    padding: 45px 50px !important;
+    display: flex;             /* 内部启用 flex 布局 */
+    flex-direction: column;    /* 垂直排列 */
+}
+
+/* 人物简介面板特殊处理 */
+.panel-header-light {
+    color: #2a1e12;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-size: 22px;
+    border-bottom: 1px solid rgba(61, 43, 31, 0.3);
+    padding-bottom: 8px;
+}
+
+.avatars {
+    display: flex;
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.avatar-item {
+    cursor: pointer;
+    text-align: center;
+}
+
+.avatar-circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 2px solid #3d2b1f;
+    overflow: hidden;
+    margin-bottom: 8px;
+    transition: 0.3s;
+}
+
+.avatar-item.active .avatar-circle {
+    border-color: #8b1e1e;
+    transform: scale(1.1);
+}
+
+.avatar-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.avatar-name {
+    font-size: 16px;
+    color: #2a1e12;
+    font-weight: bold;
+}
+
+/* 信纸框 */
+.paper-layer {
+    width: 65%;
+    flex-grow: 1; /* 让信纸自动撑满剩余的高度 */
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: relative;
+    padding: 55px 70px;
+    box-sizing: border-box;
+    transform: rotate(-1deg);
+    filter: drop-shadow(2px 5px 10px rgba(0,0,0,0.3));
+}
+
+.paper-content {
+    color: #1a1208;
+    height: 100%;
+}
+
+.char-title {
+    font-size: 28px;
+    color: #8b1e1e;
+    margin: 0 0 12px 0;
+    font-weight: bold;
+}
+
+.char-desc {
+    font-size: 18px;
+    line-height: 1.85;
+    margin: 0;
+    color: #1a1208;
+    font-weight: 500;
+}
+
+/* 用户评分栏 */
+.ratings-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.rating-row {
+    border-bottom: 1px dashed rgba(61, 43, 31, 0.3);
+    padding-bottom: 15px;
+}
+
+.rating-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.label {
+    font-size: 17px;
+    color: #2a1e12;
+}
+
+.stars {
+    color: #222;
+    font-size: 20px;
+}
+
+.star.filled {
+    color: #f4c430;
+}
+
+.score-val {
+    color: #f4c430;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+/* 用户评价列表 */
+.reviews-list {
+    flex-grow: 1; /* 撑满剩余高度 */
+    max-height: 500px;
+    overflow-y: auto;
+    padding-right: 8px;
+}
+
+/* 滚动条 */
+.reviews-list::-webkit-scrollbar {
+    width: 4px;
+}
+.reviews-list::-webkit-scrollbar-thumb {
+    background: rgba(61, 43, 31, 0.5);
+    border-radius: 2px;
+}
+
+.review-item {
+    border-bottom: 1px solid rgba(61, 43, 31, 0.3);
+    padding: 15px 0;
+}
+
+.review-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.user-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.user-icon {
+    width: 28px;
+    height: 28px;
+    background: #2a2a2a;
+    border-radius: 50%;
+}
+
+.username {
+    font-size: 16px;
+    color: #2a1e12;
+}
+
+.review-body {
+    font-size: 15.5px;
+    line-height: 1.7;
+    color: #1a1208;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.review-footer {
+    text-align: right;
+    font-size: 13px;
+    color: #8b1e1e;
+}
+
+/* ================= 底部操作区域 ================= */
+.actions-area {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    padding-bottom: 40px;
+}
+
+.investigate-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #8b1e1e 0%, #5a1212 100%);
+    color: #fff;
+    text-decoration: none;
+    padding: 15px 60px;
+    border-radius: 4px;
+    border: 2px solid #a92020;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.investigate-btn:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(169, 32, 32, 0.4);
+    background: linear-gradient(135deg, #a92020 0%, #8b1e1e 100%);
+}
+
+.investigate-btn .btn-text {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 4px;
+}
+
+.investigate-btn .btn-sub {
+    font-size: 12px;
+    opacity: 0.7;
+    margin-top: 4px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* 再次确保主内容区域限制宽度并对齐 */
+.main-content {
+    display: grid;
+    grid-template-columns: 1.5fr 0.8fr 1.2fr;
+    gap: 25px;
+    padding: 10px 40px;
+    max-width: 1300px;
+    margin: 0 auto;
+    align-items: stretch;
+}

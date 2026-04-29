@@ -1,0 +1,55 @@
+2026-04-23 15:38:53,905 [INFO] langchain-openai detected system proxy configuration and no explicit `http_socket_options` / `http_client` / `http_async_client` / `openai_proxy`; skipping the custom `httpx` transport so httpx's env-proxy auto-detection applies. Pass `http_socket_options=[...]` to opt back into kernel-level TCP keepalive tuning on top of the env proxy.
+2026-04-23 15:38:55,605 [INFO] ✅ 成功加载 gm_main 逻辑中枢
+2026-04-23 15:38:55,612 [INFO] ================ 系统启动：全链路联调版本加载成功 ================
+2026-04-23 15:48:10,311 [INFO] 📩 收到玩家消息 | 角色: CharacterA | 内容: 我们有足够的证据
+2026-04-23 15:48:10,313 [ERROR] 找不到角色 CharacterA 的剧本文件
+2026-04-23 15:53:11,338 [INFO] 📩 收到玩家消息 | 角色: CharacterA | 内容: 我们当然有足够的证据
+2026-04-23 15:53:11,342 [ERROR] 找不到角色 CharacterA 的剧本文件
+2026-04-23 15:58:24,815 [INFO] 📩 收到玩家消息 | 角色: 安娜 | 内容: 我们有足够的证据
+2026-04-23 15:58:25,452 [INFO] HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-23 15:58:26,940 [INFO] 🤖 GM 判定结果: NO | 推进至: None
+2026-04-23 16:06:15,025 [INFO] 📩 收到玩家消息 | 角色: 安娜 | 内容: 你8月31日在别墅里吗
+2026-04-23 16:06:15,199 [INFO] HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-23 16:06:16,046 [INFO] 🤖 GM 判定结果: YES | 推进至: None
+2026-04-23 16:19:25,682 [INFO] 📩 收到玩家消息 | 角色: 安娜 | 内容: 安娜，告诉我真相
+2026-04-23 16:19:25,927 [INFO] HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-23 16:19:26,849 [INFO] 🤖 GM 判定结果: NO | 推进至: None
+2026-04-23 16:25:23,654 [INFO] 📩 收到玩家消息 | 角色: 安娜 | 内容: 安娜，你 8 月 31 日到底在哪？
+2026-04-23 16:25:23,847 [INFO] HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-23 16:25:24,653 [INFO] 🤖 GM 判定结果: YES | 推进至: None
+2026-04-23 16:26:26,717 [INFO] 📩 收到玩家消息 | 角色: 安娜 | 内容: 你8月31日到底在哪儿
+2026-04-23 16:26:26,909 [INFO] HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-23 16:26:27,696 [INFO] 🤖 GM 判定结果: YES | 推进至: None
+2026-04-23 16:31:09,586 [INFO] 📩 收到玩家消息 | 角色: 安娜 | 内容: 安娜，你8月31号到底在哪儿
+2026-04-23 16:31:09,979 [INFO] HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-23 16:31:10,906 [INFO] 🤖 GM 判定结果: YES | 推进至: None
+2026-04-23 16:31:26,518 [INFO] 📩 收到玩家消息 | 角色: 安娜 | 内容: 回我
+2026-04-23 16:31:26,899 [INFO] HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-23 16:31:27,454 [INFO] 🤖 GM 判定结果: NO | 推进至: None
+2026-04-23 16:31:31,656 [INFO] 📩 收到玩家消息 | 角色: 安娜 | 内容: speak
+2026-04-23 16:31:31,852 [INFO] HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-23 16:31:32,612 [INFO] 🤖 GM 判定结果: NO | 推进至: None
+2026-04-23 16:34:06,901 [INFO] 📩 收到玩家消息 | 角色: 安娜 | 内容: 安娜，你8月31号到底在哪儿
+2026-04-23 16:34:07,132 [INFO] HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-23 16:34:07,558 [INFO] 🤖 GM 判定结果: YES | 推进至: None
+2026-04-23 16:34:45,160 [INFO] 📩 收到玩家消息 | 角色: 安娜 | 内容: 回我话
+2026-04-23 16:34:45,424 [INFO] HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-23 16:34:45,724 [INFO] 🤖 GM 判定结果: NO | 推进至: None
+2026-04-23 16:41:20,033 [INFO] 📩 收到玩家消息 | 角色: 安娜 | 内容: 安娜 你8月31日到底在哪儿
+2026-04-23 16:41:20,304 [INFO] HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-23 16:41:21,090 [INFO] 🤖 GM 判定结果: YES | 推进至: None
+2026-04-23 16:42:57,294 [INFO] 📩 收到玩家消息 | 角色: 安娜 | 内容: 安娜，你8月31日到底在哪儿
+2026-04-23 16:42:58,045 [INFO] HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-23 16:42:59,074 [INFO] 🤖 GM 判定结果: YES | 推进至: None
+2026-04-23 16:43:24,507 [INFO] 📩 收到玩家消息 | 角色: 安娜 | 内容: 回答我
+2026-04-23 16:43:24,797 [INFO] HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-23 16:43:26,036 [INFO] 🤖 GM 判定结果: NO | 推进至: None
+2026-04-23 19:44:12,950 [INFO] 📩 收到玩家消息 | 角色: 安娜 | 内容: 安娜 你8月31日到底在哪儿
+2026-04-23 19:44:13,550 [INFO] HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-23 19:44:13,821 [INFO] 🤖 GM 判定结果: YES | 推进至: None
+2026-04-23 19:48:49,649 [INFO] 📩 收到玩家消息 | 角色: 安娜 | 内容: 安娜，你 8 月 31 日到底在哪儿
+2026-04-23 19:48:49,922 [INFO] HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-23 19:48:50,292 [INFO] 🤖 GM 判定结果: YES | 推进至: None
+2026-04-23 19:52:15,597 [INFO] 📩 收到玩家消息 | 角色: 安娜 | 内容: 安娜 你8月31日到底在哪儿
+2026-04-23 19:52:15,943 [INFO] HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-23 19:52:16,666 [INFO] 🤖 GM 判定结果: YES | 推进至: None

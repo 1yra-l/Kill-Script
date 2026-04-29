@@ -1,0 +1,95 @@
+<div class="vintage-hall text-primary">
+  <div class="grain-overlay"></div>
+  <div class="dust-particles"></div>
+
+  <NavBar />
+  <div class="layout-container">
+    <header class="wooden-beam-header">
+      <h1 class="engraved-title">迷局--多智能体剧本杀平台</h1>
+      <p class="engraved-subtitle">打破死板，动态剧情，与 AI 嫌疑人自由互动...</p>
+    </header>
+
+    <section class="detective-desk-section">
+      <div class="section-title">
+        <h2><span class="ink-icon">✒️</span> 开启新卷宗</h2>
+        <p class="typewriter-text">在散落的文件中，拼凑新的线索...</p>
+      </div>
+      <div class="vintage-form">
+        <div class="form-group">
+          <label>案卷代号</label>
+          <input v-model="newRoom.name" placeholder="例：血色古堡疑云" class="paper-input" />
+        </div>
+        <div class="form-group">
+          <label>档案提取</label>
+          <select v-model="newRoom.script" class="paper-input">
+            <option value="" disabled selected>选择一桩尘封的悬案...</option>
+            <option v-for="room in rooms" :key="room.id" :value="room.name">
+              {{ room.name }}
+            </option>
+          </select>
+        </div>
+        <button @click="createRoom" class="btn-rusted">即刻侦破</button>
+      </div>
+    </section>
+
+    <section class="clue-board-section">
+      <header class="board-header">
+        <h2><span class="ink-icon">📌</span> 嫌疑人线索公告栏</h2>
+        <div class="search-box">
+          <input v-model="searchQuery" placeholder="检索旧卷宗..." class="paper-input search-input" />
+          <button @click="refreshRooms" class="btn-rusted small">
+            {{ isLoading ? '正在取证...' : '掸去灰尘' }}
+          </button>
+        </div>
+      </header>
+
+      <div v-if="isLoading" class="typewriter-text" style="text-align: center; padding: 40px;">
+        正在调取绝密档案...
+      </div>
+
+      <div v-else class="paper-grid">
+        <article
+          v-for="room in filteredRooms"
+          :key="room.id"
+          class="yellowed-paper"
+        >
+          <div class="rubber-stamp" :class="room.status === '进行中' ? 'stamp-red' : 'stamp-black'">
+            {{ room.status === '进行中' ? 'CONFIDENTIAL' : 'PENDING' }}
+          </div>
+
+          <div class="paper-header">
+            <span class="typewriter-id">NO. {{ room.id }}</span>
+            <h3 class="ink-title">{{ room.name }}</h3>
+          </div>
+
+          <div class="paper-body typewriter-text">
+            <p><strong>案情摘要：</strong>{{ (room.abstract || '暂无描述').slice(0, 30) }}...</p>
+            <p><strong>现场人员：</strong>{{ room.players }} 人</p>
+          </div>
+
+          <div class="custom-tooltip-wrapper">
+            <div class="tooltip-content">
+              <header class="tooltip-header">
+                <span class="file-icon">📁</span> 机密档案详情
+              </header>
+              <div class="tooltip-body">
+                {{ room.abstract || '该案卷暂无更多背景细节...' }}
+              </div>
+              <div class="tooltip-footer">DECRYPTED DATA // TOP SECRET</div>
+            </div>
+          </div>
+
+          <div class="paper-footer">
+            <button @click="joinRoom(room)" class="btn-rusted outline">
+              加入调查
+            </button>
+          </div>
+        </article>
+      </div>
+
+      <div v-if="!isLoading && filteredRooms.length === 0" class="typewriter-text" style="text-align: center; color: #666; padding: 40px;">
+        未找到相关档案记录。
+      </div>
+    </section>
+  </div>
+</div>

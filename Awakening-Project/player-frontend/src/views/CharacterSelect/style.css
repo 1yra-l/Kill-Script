@@ -1,0 +1,99 @@
+.page-container { position: relative; z-index: 1000; padding-bottom: 50px; }
+.content-wrapper { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+
+/* 标题区 */
+.main-title { color: #d32f2f; font-size: 2.2rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); margin-bottom: 10px; }
+.desc-text { color: #a89a85; font-style: italic; margin-bottom: 40px; }
+
+/* 布局优化 */
+.desk-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 40px;
+  align-items: start; /* 确保右侧纸张对齐顶部 */
+}
+
+/* --- 核心修改：左侧滚动区域 --- */
+.photo-area-scroll {
+  max-height: 800px; /* 根据你的显示器高度调整，建议固定一个值 */
+  overflow-y: auto;  /* 开启垂直滚动 */
+  padding: 10px 20px 10px 10px; /* 留出呼吸空间 */
+
+  /* 隐藏滚动条 (Chrome, Safari, Edge) */
+  &::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
+  /* 隐藏滚动条 (Firefox) */
+  scrollbar-width: none;
+  /* 隐藏滚动条 (IE/Edge) */
+  -ms-overflow-style: none;
+}
+
+/* 证物照片 */
+.evidence-photo {
+  background: #fdfdfd; padding: 10px 10px 30px; border: 1px solid #ccc;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.4); cursor: pointer; transition: 0.3s;
+  transform: rotate(-2deg); position: relative; margin-bottom: 30px; /* 增加间距 */
+}
+.photo-selected { transform: scale(1.05) rotate(0deg); border: 2px solid #a31d1d; box-shadow: 0 0 20px rgba(163, 29, 29, 0.4); }
+.paper-clip {
+  position: absolute; top: -10px; left: 20px; width: 15px; height: 40px;
+  border: 2px solid #999; border-radius: 10px; background: transparent;
+}
+.img-placeholder { background: #111; height: 160px; display: flex; align-items: center; justify-content: center; font-size: 3rem; }
+.name-tag { color: #333; text-align: center; margin-top: 10px; font-weight: bold; }
+
+/* 核心牛皮纸 */
+.parchment-paper {
+  background-color: #e8d5b5;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.1), rgba(0,0,0,0.05)),
+    url("https://www.transparenttextures.com/patterns/old-mathematics.png");
+  padding: 50px;
+  position: relative;
+  min-height: 600px;
+  box-shadow:
+    2px 2px 20px rgba(0,0,0,0.5),
+    20px 20px 40px rgba(0,0,0,0.3);
+  color: #2b221b;
+  border-radius: 2px 2px 40px 2px;
+}
+
+.parchment-paper::after {
+  content: "";
+  position: absolute; bottom: 0; right: 0;
+  width: 0; height: 0;
+  border-style: solid;
+  border-width: 0 0 40px 40px;
+  border-color: transparent transparent #1a1410 transparent;
+  box-shadow: -5px -5px 10px rgba(0,0,0,0.2);
+}
+
+.char-title { font-size: 2.5rem; margin-bottom: 5px; font-weight: 900; }
+.ink-line { height: 3px; background: #2b221b; margin-bottom: 30px; }
+
+.stats-box { margin-bottom: 30px; font-size: 1.1rem; line-height: 1.8; }
+.bio-section h3, .secret-section h3 { font-size: 1rem; color: #5e4b3c; margin-bottom: 10px; }
+.bio-section h3 { border-bottom: 1px dashed #9c8e76; display: inline-block; }
+.typewriter-text { line-height: 1.8; font-size: 1.1rem; text-align: justify; }
+
+.secret-section { margin-top: 40px; }
+.warning { color: #a31d1d !important; }
+.blur-box { background: rgba(0,0,0,0.03); padding: 15px; border: 1px dashed #9c8e76; }
+.ink-blob { background: #111; color: #111; padding: 0 5px; }
+
+.footer-sign { margin-top: 60px; display: flex; justify-content: center; }
+.signature-btn {
+  border: 2px solid #2b221b; padding: 15px 30px; cursor: pointer;
+  display: flex; align-items: center; gap: 15px; transition: 0.3s;
+}
+.signature-btn:hover { background: #2b221b; color: #e8d5b5; }
+.stamp-icon { font-size: 1.5rem; }
+
+.confidential-stamp {
+  position: absolute; top: 30px; right: 30px;
+  border: 3px solid #a31d1d; color: #a31d1d;
+  padding: 5px 15px; font-weight: 900; font-size: 1.2rem;
+  opacity: 0.5; transform: rotate(20deg);
+}

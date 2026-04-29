@@ -1,0 +1,4 @@
+2026-04-24 16:13:19,639 [INFO] ================ 系统启动：API 已切换至云端数据库模式 ================
+2026-04-24 16:27:28,646 [INFO] HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-24 16:30:26,114 [INFO] HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-24 16:30:52,989 [INFO] HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"

@@ -1,0 +1,235 @@
+/* ============================================================
+   RoomHall 专用样式表 - 档案室/侦探大厅风格
+   ============================================================ */
+
+/* 1. 基础布局与背景层 */
+.vintage-hall {
+    min-height: 100vh;
+    color: #c4b699;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    position: relative;
+    padding-bottom: 50px;
+}
+
+.layout-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 10;
+}
+
+/* 2. 动态滤镜：全局噪点与悬浮灰尘 */
+.grain-overlay {
+    position: fixed; inset: 0; pointer-events: none; z-index: 999; opacity: 0.12;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+.dust-particles {
+    position: fixed; inset: 0; pointer-events: none; z-index: 998; opacity: 0.2;
+    background: radial-gradient(circle 1.5px at 20px 30px, #fff, transparent),
+                radial-gradient(circle 1px at 80px 70px, #fff, transparent),
+                radial-gradient(circle 2px at 150px 180px, #fff, transparent);
+    background-size: 250px 250px;
+    animation: floatDust 60s linear infinite;
+}
+
+@keyframes floatDust {
+    0% { background-position: 0 0; }
+    100% { background-position: -250px 500px; }
+}
+
+/* 3. 顶部主标题 */
+.wooden-beam-header {
+    text-align: center;
+    margin: 40px 0 60px;
+    padding: 30px;
+    background: linear-gradient(to right, transparent, rgba(0,0,0,0.5), transparent);
+    border-top: 1px solid #3a2e24;
+    border-bottom: 1px solid #3a2e24;
+}
+
+.engraved-title {
+    font-size: 2.5rem;
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+    color: #1a1410;
+    text-shadow: -1px -1px 1px #000, 1px 1px 1px #4a3c30;
+}
+
+/* 4. 侦探办公桌区域 (表单区) */
+.detective-desk-section {
+    margin-bottom: 60px;
+    padding: 40px;
+    background: rgba(20, 15, 12, 0.9);
+    border: 1px solid #3a2e24;
+    box-shadow: inset 0 0 60px rgba(0,0,0,1), 0 15px 40px rgba(0,0,0,0.8);
+    position: relative;
+}
+
+.vintage-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 25px;
+    align-items: flex-end;
+    margin-top: 30px;
+}
+
+.paper-input {
+    width: 100%;
+    padding: 14px;
+    background-color: #c4b699;
+    background-image: url("https://www.transparenttextures.com/patterns/handmade-paper.png");
+    color: #2b2622;
+    border: 2px solid #5a4b3c;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    box-shadow: inset 2px 2px 8px rgba(0,0,0,0.4);
+    transition: all 0.3s;
+}
+
+/* 5. 线索公告栏与纸张卡片 */
+.board-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    border-left: 8px solid #8a3324;
+    padding-left: 20px;
+}
+
+.search-box { display: flex; align-items: center; gap: 10px; }
+.search-input { width: 200px; margin-bottom: 0 !important; }
+
+.paper-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 35px;
+}
+
+.yellowed-paper {
+    background: #dcd1ba;
+    background-image: url("https://www.transparenttextures.com/patterns/old-mathematics.png");
+    padding: 30px;
+    position: relative; /* 必须为 tooltip 提供定位基准 */
+    box-shadow: 2px 8px 20px rgba(0,0,0,0.6), inset 0 0 50px rgba(139, 69, 19, 0.1);
+    border: 1px solid #a39476;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: rotate(-1deg);
+}
+
+.yellowed-paper:nth-child(even) { transform: rotate(1.5deg); }
+
+.yellowed-paper:hover {
+    z-index: 100; /* 悬停时提升层级，确保 Tooltip 盖在最上方 */
+    transform: scale(1.05) rotate(0deg);
+    box-shadow: 10px 20px 40px rgba(0,0,0,0.8);
+}
+
+/* 档案文字细节 */
+.typewriter-id { color: #2D2926 !important; font-weight: bold; }
+.ink-title { color: #1a1410 !important; font-weight: 800; margin: 10px 0; }
+.yellowed-paper p { color: #2D2926; font-weight: 550; line-height: 1.6; }
+
+/* 6. 【核心新增】：高级自定义 Tooltip 样式 */
+.custom-tooltip-wrapper {
+    position: absolute;
+    bottom: 105%; /* 弹出在卡片上方 */
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    width: 300px;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.yellowed-paper:hover .custom-tooltip-wrapper {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.tooltip-content {
+    background-color: #fbf0d9;
+    background-image: url("https://www.transparenttextures.com/patterns/parchment.png"); /* 羊皮纸纹理 */
+    border: 1px solid #c9bca0;
+    padding: 18px;
+    border-radius: 2px;
+    box-shadow: 0 15px 45px rgba(0,0,0,0.7), inset 0 0 40px rgba(255,255,255,0.4);
+    position: relative;
+}
+
+.tooltip-header {
+    font-size: 0.75rem;
+    color: #8a1a1a; /* 档案红 */
+    border-bottom: 1px solid rgba(138, 26, 26, 0.2);
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+.tooltip-body {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #1a1410;
+    text-align: justify;
+    font-family: 'Courier New', Courier, monospace; /* 打字机字体 */
+}
+
+/* Tooltip 小三角指针 */
+.custom-tooltip-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -10px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: #c9bca0 transparent transparent transparent;
+}
+
+/* 7. 印章与按钮 */
+.rubber-stamp {
+    position: absolute; top: 15px; right: 15px;
+    padding: 4px 10px; border: 3px solid;
+    font-weight: 900; transform: rotate(15deg);
+    opacity: 0.7; font-size: 0.8rem;
+}
+.stamp-red { color: #8a1a1a; border-color: #8a1a1a; }
+.stamp-black { color: #1a1410; border-color: #1a1410; }
+
+.btn-rusted {
+    background: #7c2d23;
+    color: #f4e4bc;
+    border: 2px solid #4a1912;
+    padding: 12px 25px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    cursor: pointer;
+    text-transform: uppercase;
+    box-shadow: 3px 5px 10px rgba(0,0,0,0.5);
+    transition: 0.3s;
+}
+
+.btn-rusted:hover:not(:disabled) {
+    background: #a31d1d;
+    filter: brightness(1.2);
+}
+
+.btn-rusted.outline {
+    background: transparent;
+    color: #8a3324;
+    border-color: #8a3324;
+    box-shadow: none;
+    margin-top: 15px;
+}
+
+/* 8. 响应式微调 */
+@media (max-width: 900px) {
+    .vintage-form { grid-template-columns: 1fr; }
+    .engraved-title { font-size: 1.8rem; }
+    .custom-tooltip-wrapper { width: 250px; }
+}

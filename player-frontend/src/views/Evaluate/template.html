@@ -1,0 +1,104 @@
+<div class="review-terminal cyberpunk-bg">
+  <div class="scanline"></div>
+  <div class="glitch-overlay"></div>
+
+  <div class="system-header">
+
+    <div class="header-left" style="display: flex; align-items: center; gap: 20px;">
+      <button class="cyber-back-btn" @click="goBack">
+        <span class="btn-icon">ᐊ</span> 返回
+      </button>
+      <h1 class="terminal-title glitch-text" style="margin: 0;">GAME REVIEW TERMINAL</h1>
+    </div>
+
+    <div class="action-buttons">
+      <button class="nav-btn neon-btn" @click="refresh">刷新评价</button>
+      <button class="nav-btn neon-btn" @click="clearAll">清空我的评价</button>
+    </div>
+  </div>
+
+  <div class="terminal-header">
+    <div class="system-tag glitch-tag">EVALUATION SYSTEM v1.0</div>
+    <div class="search-bar">
+      <input v-model="search" type="text" placeholder="搜索评价关键词..." class="neon-input">
+    </div>
+  </div>
+
+  <div class="terminal-body">
+    <div class="sidebar">
+      <div class="stat-item glow-card">
+        <span class="label">总评价数</span>
+        <span class="value online-pulse pulse-fast">{{ total }}</span>
+      </div>
+      <div class="stat-item glow-card">
+        <span class="label">平均评分</span>
+        <span class="value online-pulse pulse-fast">{{ avg }}</span>
+      </div>
+
+      <div class="nav-category">
+        <div class="nav-item neon-item" :class="{active:filterType==='all'}" @click="filterType='all'">全部评价</div>
+        <div class="nav-item neon-item" :class="{active:filterType==='script-kill'}" @click="filterType='script-kill'">剧本杀评价</div>
+        <div class="nav-item neon-item" :class="{active:filterType==='customer-service'}" @click="filterType='customer-service'">客服评价</div>
+        <div class="nav-item neon-item" :class="{active:filterType==='background-sound'}" @click="filterType='background-sound'">背景音评价</div>
+        <div class="nav-item neon-item" :class="{active:filterType==='gameplay'}" @click="filterType='gameplay'">游戏玩法评价</div>
+        <div class="nav-item neon-item" :class="{active:filterType==='interface'}" @click="filterType='interface'">界面设计评价</div>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <div class="review-submit neon-panel">
+        <h2 class="section-title glow-text">提交新评价</h2>
+        <div class="form-group">
+          <label class="form-label">评价类型：</label>
+          <select v-model="type" class="neon-select">
+            <option value="script-kill">剧本杀</option>
+            <option value="customer-service">客服</option>
+            <option value="background-sound">背景音</option>
+            <option value="gameplay">游戏玩法</option>
+            <option value="interface">界面设计</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">评分：</label>
+          <div class="rating-stars neon-stars">
+            <span @click="score=1" :class="{active:score>=1}">★</span>
+            <span @click="score=2" :class="{active:score>=2}">★</span>
+            <span @click="score=3" :class="{active:score>=3}">★</span>
+            <span @click="score=4" :class="{active:score>=4}">★</span>
+            <span @click="score=5" :class="{active:score>=5}">★</span>
+          </div>
+          <span class="score-display">{{ score }} 分</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">评价内容：</label>
+          <textarea v-model="content" class="neon-textarea" placeholder="请输入你的评价内容..."></textarea>
+        </div>
+        <button class="nav-btn neon-btn pulse-btn" @click="submit">提交评价</button>
+      </div>
+
+      <div class="review-list">
+        <h2 class="section-title glow-text">评价列表</h2>
+        <div class="reviews-container">
+          <div
+            v-for="item in showList"
+            :key="item.id"
+            class="review-card neon-card"
+            :class="'score-'+item.score"
+          >
+            <div class="review-card__header">
+              <span class="review-card__type neon-tag">{{ item.typeName }}</span>
+              <span class="review-card__score">{{ item.score }} 分</span>
+            </div>
+            <div class="review-card__content">{{ item.content }}</div>
+            <div class="review-card__time">{{ item.time }}</div>
+            <!-- 创新：星级显示 -->
+            <div class="card-stars">
+              <span v-for="n in 5" :class="{on: n <= item.score}">★</span>
+            </div>
+          </div>
+          <div v-if="showList.length===0" class="empty-tip glitch-empty">暂无评价</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

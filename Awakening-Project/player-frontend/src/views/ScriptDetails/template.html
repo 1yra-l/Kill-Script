@@ -1,0 +1,72 @@
+<div class="script-view-page">
+  <NavBar />
+
+  <main class="script-container">
+    <div class="script-controls">
+      <div class="spacer"></div>
+
+      <button v-if="!isReviewMode" class="back-btn-metal" @click="finishReading" style="margin-right: 15px;">
+        <span class="icon">✅</span>
+        <span class="text">阅读完毕 (进入下一步)</span>
+      </button>
+
+      <button v-if="isReviewMode" class="back-btn-metal" @click="goBack">
+        <span class="icon">↩️</span>
+        <span class="text">合上卷宗 (返回现场)</span>
+      </button>
+    </div>
+
+    <div class="light-box-frame">
+      <article class="evidence-slide scrollable-dossier">
+        <div class="slide-header">
+          <span class="case-number">CASE FILE #0413 - {{ roleName }}</span>
+          <div class="status-indicator">DECRYPTED</div>
+        </div>
+
+        <div class="slide-body">
+          <h1 class="script-title">{{ scriptData.title }}</h1>
+
+          <section class="dossier-section">
+            <h2 class="section-heading">📜 剧本正文 · 公开档案</h2>
+            <div class="paragraph public-text" v-html="scriptData.common.background"></div>
+          </section>
+
+          <div class="section-divider"></div>
+
+          <section class="dossier-section">
+            <h2 class="section-heading danger-text">🩸 剧本正文 · 绝密记忆 (仅你可见)</h2>
+            <div class="paragraph secret-text" v-html="scriptData.private.secret"></div>
+          </section>
+
+          <div class="section-divider"></div>
+
+          <section class="dossier-section">
+            <h2 class="section-heading">⏱️ 案发当日 · 我的时间线</h2>
+            <ul class="timeline-list">
+              <li v-for="(event, index) in scriptData.private.timeline" :key="index" class="timeline-item">
+                <span class="time-badge">{{ event.time }}</span>
+                <span class="action-text">{{ event.action }}</span>
+              </li>
+            </ul>
+          </section>
+
+          <div class="section-divider"></div>
+
+          <section class="dossier-section">
+            <h2 class="section-heading">🎯 最终获胜目标</h2>
+            <ul class="task-list">
+              <li v-for="(task, index) in scriptData.private.tasks" :key="index">
+                <span class="bullet">▶</span> {{ task }}
+              </li>
+            </ul>
+          </section>
+
+        </div>
+
+        <div class="slide-footer">
+          <div class="barcode-placeholder">|||| || ||| ||||| | ||</div>
+        </div>
+      </article>
+    </div>
+  </main>
+</div>

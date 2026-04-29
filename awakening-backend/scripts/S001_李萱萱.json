@@ -1,0 +1,85 @@
+{
+  "script_id": 1,
+  "id": "suspect_4",
+  "character_name": "李萱萱",
+  "persona": "书卷气息十足但存在感较低，性格内向、敏感、有重度恋父情结，依赖父亲，对朋友有隐瞒和矛盾心理",
+  "motivation": "保护与父亲的亲密关系，隐瞒自己的秘密和过去行为，避免被他人发现真相",
+  "timeline": [
+    {
+      "time": "2月26日早晨",
+      "location": "真相高中高二3班教室",
+      "action": "来到教室，观察同学和转校生皇甫青",
+      "public_alibi": "正常上学",
+      "is_truth": true
+    },
+    {
+      "time": "2月26日中午",
+      "location": "学校食堂",
+      "action": "与谢雨晴聊天，讨论转校生皇甫青",
+      "public_alibi": "与闺蜜吃饭聊天",
+      "is_truth": true
+    },
+    {
+      "time": "2月26日晚上",
+      "location": "家中",
+      "action": "上网，注意到照片有违和感并收起来，接到谢雨晴电话后睡觉",
+      "public_alibi": "在家休息，被电话吵醒",
+      "is_truth": true
+    },
+    {
+      "time": "午夜0:00后",
+      "location": "家中",
+      "action": "做噩梦，梦见自己将无脸人推下天台",
+      "public_alibi": "睡觉做噩梦",
+      "is_truth": false
+    },
+    {
+      "time": "2月27日早晨",
+      "location": "家中",
+      "action": "发现垃圾桶里的纸，但未仔细查看",
+      "public_alibi": "正常起床准备上学",
+      "is_truth": true
+    },
+    {
+      "time": "2月27日白天",
+      "location": "真相高中高二3班教室",
+      "action": "上课，与谢雨晴聊天，注意到她戴着四叶草戒指",
+      "public_alibi": "正常上课",
+      "is_truth": true
+    },
+    {
+      "time": "2月27日黄昏至晚上",
+      "location": "真相高中高二3班教室",
+      "action": "被苍白手拉入黑板，发现纸箱内谢雨晴的肉块和戒指，逃出教室，接到疑似女鬼电话后逃往天台",
+      "public_alibi": "未知",
+      "is_truth": true
+    },
+    {
+      "time": "2月27日晚上",
+      "location": "真相高中天台",
+      "action": "与其他同学相遇，讨论遭遇，目睹叶冷星被白衣恶灵吞噬",
+      "public_alibi": "逃到天台寻求安全",
+      "is_truth": true
+    },
+    {
+      "time": "2月27日晚上",
+      "location": "李老师办公室",
+      "action": "被鬼婴拖入衣柜死亡",
+      "public_alibi": "未知",
+      "is_truth": true
+    },
+    {
+      "time": "回魂夜",
+      "location": "通灵空间和天台",
+      "action": "回忆死亡经历，参与破解诅咒",
+      "public_alibi": "未知",
+      "is_truth": true
+    }
+  ],
+  "hidden_secrets": [
+    "拥有重度恋父情结，讨厌任何接近父亲的女性",
+    "曾破坏陈阿姨的刹车系统导致其车祸丧生",
+    "在梦中将无脸人推下天台",
+    "丢失了与谢雨晴的闺蜜四叶草戒指但未告诉她"
+  ]
+}

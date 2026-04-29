@@ -1,0 +1,299 @@
+/* ============================================================
+   全局与布局
+   ============================================================ */
+.history-record-container {
+  background-color: #0d0d0d;
+  background-image: url("https://www.transparenttextures.com/patterns/dust.png");
+  color: #e8d9c2;
+  min-height: 100vh;
+  padding: 40px 60px;
+  font-family: 'Courier New', Courier, "STFangsong", serif;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============================================================
+   头部：标题与返回按钮
+   ============================================================ */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #2b221b;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+.page-title {
+  font-size: 2rem;
+  color: #995c36; /* 复古深棕色 */
+  margin: 0;
+  letter-spacing: 2px;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
+}
+
+.back-btn {
+  background: transparent;
+  border: 1px solid #5e4b3c;
+  color: #a89a85;
+  padding: 8px 20px;
+  font-size: 1.1rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+}
+
+.back-btn:hover {
+  background: #2b221b;
+  color: #fdfdfd;
+  border-color: #a31d1d;
+  transform: translateX(-3px);
+}
+
+/* ============================================================
+   主体轮播区域 (深灰色半透明网格展示板)
+   ============================================================ */
+.carousel-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+
+  /* 半透明背景，透出底层灰尘纹理 */
+  background-color: rgba(30, 30, 30, 0.55);
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 25px 25px;
+
+  border: 2px solid rgba(26, 26, 26, 0.8);
+  border-radius: 8px;
+  box-shadow: inset 0 0 50px rgba(0,0,0,0.8), 0 10px 30px rgba(0,0,0,0.5);
+  padding: 20px;
+  backdrop-filter: blur(2px);
+}
+
+/* 左右箭头 */
+.nav-arrow {
+  background: transparent;
+  border: none;
+  color: #e8d9c2;
+  font-size: 4rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0 20px;
+}
+
+.nav-arrow:hover:not(.disabled) {
+  color: #d32f2f;
+  transform: scale(1.1);
+  text-shadow: 0 0 15px rgba(211, 47, 47, 0.6);
+}
+
+.nav-arrow.disabled {
+  color: #444;
+  cursor: not-allowed;
+}
+
+.folders-wrapper {
+  overflow: hidden;
+  width: 1050px;
+  padding: 20px 0;
+}
+
+.folders-container {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+}
+
+/* ============================================================
+   单个档案袋卡片 (深度做旧牛皮纸质感)
+   ============================================================ */
+.folder-card {
+  width: 320px;
+  height: 480px;
+  flex-shrink: 0;
+  background-color: #a8845e;
+  background-image:
+    radial-gradient(circle at center, transparent 40%, rgba(60, 30, 0, 0.5) 120%),
+    url("https://www.transparenttextures.com/patterns/cardboard-flat.png"),
+    linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.15) 100%);
+
+  border: 1px solid #5c3f22;
+  border-radius: 3px;
+  box-shadow:
+    inset 0 0 40px rgba(50, 25, 0, 0.3),
+    5px 10px 20px rgba(0,0,0,0.6);
+
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: #2b1f15;
+}
+
+.folder-card:hover {
+  transform: translateY(-10px);
+  box-shadow:
+    inset 0 0 50px rgba(50, 25, 0, 0.4),
+    5px 20px 30px rgba(0,0,0,0.8),
+    0 0 15px rgba(168, 132, 94, 0.3);
+  border-color: #3b2410;
+}
+
+/* 档案袋顶部的封口折叠缝线 */
+.folder-top-line {
+  height: 35px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.02));
+  border-bottom: 2px dashed #5c3f22;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+}
+
+.folder-content {
+  padding: 20px 25px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============================================================
+   内部排版：草图还原大标题与内部红框
+   ============================================================ */
+/* 顶部“档案袋”大字 */
+.folder-main-title {
+  font-size: 2.2rem;
+  color: #8b1313;
+  text-align: center;
+  font-family: "STFangsong", "KaiTi", serif;
+  font-weight: bold;
+  letter-spacing: 15px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  opacity: 0.85;
+  mix-blend-mode: multiply;
+}
+
+/* 内部信息框 (还原草图的红框) */
+.inner-info-box {
+  border: 2px solid #8b1313;
+  padding: 25px 20px;
+  margin-bottom: 15px;
+  border-radius: 2px;
+  opacity: 0.85;
+  mix-blend-mode: multiply;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.info-row {
+  margin: 0 0 20px 0;
+  font-size: 1.15rem;
+  display: flex;
+  align-items: center;
+}
+.info-row:last-child {
+  margin-bottom: 0;
+}
+
+.label {
+  color: #8b1313;
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.value {
+  color: #241810;
+  font-weight: bold;
+  opacity: 0.9;
+}
+
+/* 特殊处理案件名称：加粗底纹 */
+.title-value {
+  font-size: 1.25rem;
+  border-bottom: 1px dashed #7a5431;
+  padding-bottom: 2px;
+}
+
+/* 右下角日期 */
+.date-container {
+  text-align: right;
+  padding-right: 5px;
+  margin-top: auto;
+  opacity: 0.85;
+  mix-blend-mode: multiply;
+}
+
+.date-text {
+  font-family: 'Courier New', Courier, monospace;
+  color: #241810;
+  font-weight: bold;
+}
+
+/* ============================================================
+   状态印章与底部按钮
+   ============================================================ */
+.status-badge {
+  padding: 2px 8px;
+  border-radius: 2px;
+  font-size: 0.95rem;
+  font-weight: 900;
+  border-width: 2px;
+  border-style: solid;
+  display: inline-block;
+  transform: rotate(-3deg);
+  letter-spacing: 2px;
+  opacity: 0.85;
+}
+
+/* 绿色完成印章 */
+.status-done {
+  color: #1b401d;
+  border-color: #1b401d;
+  background-color: transparent;
+}
+
+/* 红色进行中印章 */
+.status-doing {
+  color: #8b1313;
+  border-color: #8b1313;
+  background-color: transparent;
+}
+
+.folder-footer {
+  padding: 20px;
+  border-top: 2px dashed #7a5431;
+  text-align: center;
+}
+
+.view-btn {
+  background: #241810;
+  color: #b38e66;
+  border: 1px solid #140d08;
+  padding: 12px 0;
+  width: 100%;
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-family: inherit;
+  cursor: pointer;
+  letter-spacing: 5px;
+  transition: all 0.3s ease;
+  border-radius: 3px;
+  box-shadow: inset 0 2px 5px rgba(255,255,255,0.05), 0 4px 10px rgba(0,0,0,0.4);
+}
+
+.view-btn:hover {
+  background: #751414;
+  color: #e8d9c2;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+   轮播动画
+   ============================================================ */
+.slide-move { transition: transform 0.5s ease; }
+.slide-enter-active, .slide-leave-active { transition: all 0.5s ease; }
+.slide-enter-from { opacity: 0; transform: translateX(30px); }
+.slide-leave-to { opacity: 0; transform: translateX(-30px); }

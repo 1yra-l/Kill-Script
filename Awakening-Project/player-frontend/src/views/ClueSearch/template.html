@@ -1,0 +1,65 @@
+<div class="clue-search-container">
+  <NavBar />
+  <div class="grain-overlay"></div>
+
+  <div class="main-layout">
+    <div class="map-header">
+      <h2>案发地点：九龙城寨（3D现场还原）</h2>
+      <p class="subtitle">剩余调查深度：<span class="ap-count">{{ actionPoints }}</span></p>
+    </div>
+
+    <div class="action-buttons">
+      <button class="btn-memory" @click="$router.push(`/interrogation-page/${$route.params.roomId || '4'}`)">
+        进入审讯
+      </button>
+      <button class="btn-end" @click="$router.push(`/vote-page?scriptId=${$route.params.roomId || '4'}`)">
+        指认真凶
+      </button>
+    </div>
+
+    <div class="map-container">
+      <ModelViewer modelPath="/S003.glb" @find-clue="handleSearch" />
+      <div v-if="searchingLoc" class="searching-overlay">
+        <div class="loader-spinner"></div>
+        <p class="typewriter">侦查中...</p>
+      </div>
+    </div>
+
+    <div class="notebook-wrapper">
+      <ClueNotebook :clues="formattedClues" />
+    </div>
+  </div>
+
+  <div v-if="selectedClue" class="clue-modal" @click="selectedClue = null">
+    <div class="paper-modal" @click.stop>
+      <div class="modal-header">
+        <span class="stamp-decrypted">FOUND</span>
+        <h2>{{ selectedClue.name }}</h2>
+      </div>
+      <div class="modal-body">
+        <p class="detail-source">地点：{{ selectedClue.foundAt }}</p>
+        <div class="detail-desc">{{ selectedClue.description }}</div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-primary" @click="selectedClue = null">记录</button>
+      </div>
+    </div>
+  </div>
+
+  <div v-if="showNPCDialog" class="clue-modal">
+    <div class="paper-modal">
+      <div class="modal-header">
+        <span class="stamp-decrypted" style="color: #a93226; border-color: #a93226;">REPORT</span>
+        <h2>侦查报告</h2>
+      </div>
+      <div class="modal-body">
+        <div class="detail-desc" style="text-align: center; padding: 20px 0;">
+          NPC1，NPC2, NPC3 已完成其他区域的搜查。
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-primary" @click="confirmNPCSearch">确认并汇总线索</button>
+      </div>
+    </div>
+  </div>
+</div>

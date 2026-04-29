@@ -1,0 +1,139 @@
+/* Ending.css */
+.ending-page {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  font-family: "Noto Serif SC", "Source Han Serif SC", "SimSun", serif;
+  color: #fff;
+  background-color: #000;
+}
+
+/* 背景层 */
+.bg-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(8px) brightness(0.5);
+  transform: scale(1.1);
+  transition: all 3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bg-image.clear {
+  filter: blur(0px) brightness(0.8);
+  transform: scale(1);
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.2) 50%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+}
+
+/* 标题：稳重金色 */
+.title {
+  position: absolute;
+  top: 45px;
+  width: 100%;
+  text-align: center;
+  font-size: 44px; 
+  font-weight: 900;
+  letter-spacing: 12px;
+  color: #f5d27a; 
+  text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* 内容布局：修正居中逻辑 */
+.content {
+  position: absolute;
+  top: 18%;
+  left: 50%; /* 居中起点 */
+  transform: translateX(-50%); /* 完美的水平居中偏移 */
+  display: flex;
+  justify-content: center; 
+  align-items: flex-start;
+  gap: 60px; /* 缩小左右块间距，使布局更紧凑居中 */
+  white-space: nowrap;
+}
+
+.text-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 左侧：银白 */
+.cold {
+  color: #ffffff;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+}
+
+/* 右侧：金色渐变 */
+.warm {
+  background: linear-gradient(to bottom, #fff9e6 0%, #ffcc33 50%, #ff9900 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent; 
+  filter: drop-shadow(0 0 10px rgba(255, 204, 0, 0.6));
+}
+
+/* 竖排文字 */
+.vertical-text {
+  writing-mode: vertical-lr; 
+  text-orientation: upright;
+  font-size: 26px; 
+  line-height: 2.2; 
+  letter-spacing: 6px;
+  font-weight: 600;
+  min-height: 520px;
+  white-space: pre-line;
+}
+
+/* 底部区域 */
+.footer {
+  position: absolute;
+  bottom: 40px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.honor-text {
+  color: #ffcc33;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 4px;
+  margin-bottom: 15px;
+  text-shadow: 0 0 8px rgba(255, 204, 0, 0.5);
+}
+
+.next-btn {
+  background: linear-gradient(135deg, #ffe08a 0%, #d4af37 50%, #b8860b 100%);
+  border: 1px solid #fff;
+  padding: 10px 55px;
+  border-radius: 50px;
+  color: #000;
+  font-size: 20px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+  transition: all 0.4s ease;
+}
+
+.next-btn:hover {
+  transform: scale(1.05);
+}
